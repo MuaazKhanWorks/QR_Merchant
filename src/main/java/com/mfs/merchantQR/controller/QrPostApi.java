@@ -221,8 +221,6 @@ public class QrPostApi extends AbstarctApi {
 
         if (tblMerchant != null) {
 
-//            byte[] qrCodeImageBytes  = QRCodeGenerator.generateQRCode("d1 50 01 00 00 00 f6 5f 05 2d 8f 0b 40 e2 01");
-
             byte[] qrCodeImageBytes = QRCodeGenerator.generateQRCode(tblMerchant.getQrCode());
 
             HttpHeaders headers = new HttpHeaders();
