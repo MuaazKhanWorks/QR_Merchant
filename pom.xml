@@ -158,7 +158,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>account</finalName>
+		<finalName>QR_Merchant</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
