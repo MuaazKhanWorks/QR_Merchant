@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="merchantQR:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>merchantQR</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="account.war">
+      <element id="artifact" artifact-name="merchantQR:war exploded" />
+    </root>
+  </artifact>
+</component>
