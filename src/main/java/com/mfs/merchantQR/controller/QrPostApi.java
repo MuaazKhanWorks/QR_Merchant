@@ -191,7 +191,7 @@ public class QrPostApi extends AbstarctApi {
                 } else {
                     tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.USER_ALREADY_EXIST);
                     response.setPayLoad(response.getPayLoad());
-                    response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
+                    response.setResponseCode(tblResponseMessage != null ? moduleId+tblResponseMessage.getResponseMessageCode() : moduleId+Constants.generalProcessingCode);
                     response.setMessage(tblResponseMessage.getResponseMessageDescr());
                     logs(Constants.SAVE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
                     return convertStringToResponseObject(response, response.getResponseCode());

@@ -69,7 +69,7 @@ public class QrUpdateApi extends AbstarctApi {
         } else {
             response.setPayLoad(null);
             tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
-            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
+            response.setResponseCode(tblResponseMessage != null ? moduleId+tblResponseMessage.getResponseMessageCode() : moduleId+Constants.generalProcessingCode);
             response.setMessage(Constants.sessionExpired);
             logs(Constants.UPDATE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
             return convertStringToResponseObject(response, response.getResponseCode());
