@@ -1,5 +1,7 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name="tbl_response_message")
 @NamedQuery(name="TblResponseMessage.findAll", query="SELECT t FROM TblResponseMessage t")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TblResponseMessage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
