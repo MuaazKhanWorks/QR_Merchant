@@ -26,7 +26,7 @@ public class TblRole implements Serializable {
 
 
 	@Column(name="CREATEUSER")
-	private int createuser;
+	private Integer createuser;
 
 
 
@@ -41,7 +41,7 @@ public class TblRole implements Serializable {
 
 
 	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
+	private Integer lastupdateuser;
 
 
 
@@ -56,14 +56,14 @@ public class TblRole implements Serializable {
 
 
 	@Column(name="UPDATEINDEX")
-	private int updateindex;
+	private Integer updateindex;
 
 
 
-	//bi-directional many-to-one association to LkpStatus
-	@ManyToOne
-	@JoinColumn(name="STATUS_ID")
-	private LkpStatus lkpStatus;
+//	//bi-directional many-to-one association to LkpStatus
+//	@ManyToOne
+//	@JoinColumn(name="STATUS_ID")
+//	private LkpStatus lkpStatus;
 
 	//bi-directional many-to-one association to TblUserRole
 	@OneToMany(mappedBy="tblRole")
@@ -96,7 +96,7 @@ public class TblRole implements Serializable {
 		return createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(Integer createuser) {
 		this.createuser = createuser;
 	}
 
@@ -120,7 +120,7 @@ public class TblRole implements Serializable {
 		return lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(Integer lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
@@ -144,17 +144,17 @@ public class TblRole implements Serializable {
 		return updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(Integer updateindex) {
 		this.updateindex = updateindex;
 	}
 
-	public LkpStatus getLkpStatus() {
-		return this.lkpStatus;
-	}
-
-	public void setLkpStatus(LkpStatus lkpStatus) {
-		this.lkpStatus = lkpStatus;
-	}
+//	public LkpStatus getLkpStatus() {
+//		return this.lkpStatus;
+//	}
+//
+//	public void setLkpStatus(LkpStatus lkpStatus) {
+//		this.lkpStatus = lkpStatus;
+//	}
 
 	public List<TblUserRole> getTblUserRoles() {
 		return this.tblUserRoles;

@@ -74,9 +74,9 @@ public class LkpStatus implements Serializable {
 	@OneToMany(mappedBy="lkpStatus")
 	private List<TblMerchant> tblMerchants;
 
-	//bi-directional many-to-one association to TblRole
-	@OneToMany(mappedBy="lkpStatus")
-	private List<TblRole> tblRoles;
+//	//bi-directional many-to-one association to TblRole
+//	@OneToMany(mappedBy="lkpStatus")
+//	private List<TblRole> tblRoles;
 
 	public LkpStatus() {
 	}
@@ -254,26 +254,26 @@ public class LkpStatus implements Serializable {
 		return tblMerchant;
 	}
 
-	public List<TblRole> getTblRoles() {
-		return this.tblRoles;
-	}
+//	public List<TblRole> getTblRoles() {
+//		return this.tblRoles;
+//	}
+//
+//	public void setTblRoles(List<TblRole> tblRoles) {
+//		this.tblRoles = tblRoles;
+//	}
 
-	public void setTblRoles(List<TblRole> tblRoles) {
-		this.tblRoles = tblRoles;
-	}
-
-	public TblRole addTblRole(TblRole tblRole) {
-		getTblRoles().add(tblRole);
-		tblRole.setLkpStatus(this);
-
-		return tblRole;
-	}
-
-	public TblRole removeTblRole(TblRole tblRole) {
-		getTblRoles().remove(tblRole);
-		tblRole.setLkpStatus(null);
-
-		return tblRole;
-	}
+//	public TblRole addTblRole(TblRole tblRole) {
+//		getTblRoles().add(tblRole);
+//		tblRole.setLkpStatus(this);
+//
+//		return tblRole;
+//	}
+//
+//	public TblRole removeTblRole(TblRole tblRole) {
+//		getTblRoles().remove(tblRole);
+//		tblRole.setLkpStatus(null);
+//
+//		return tblRole;
+//	}
 
 }

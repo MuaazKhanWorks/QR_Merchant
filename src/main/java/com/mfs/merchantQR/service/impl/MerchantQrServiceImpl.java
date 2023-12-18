@@ -69,11 +69,11 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         LkpStatus lkpStatus = new LkpStatus();
         lkpStatus.setStatusId(tblUserRequest.getStatusId());
         tblUser.setStatusId(lkpStatus.getStatusId());
-        tblUser = tblUserRepo.saveAndFlush(tblUser);
-        if (tblUser != null && tblUser.getUserId() > 0) {
+        tblUser = tblUserRepo.save(tblUser);
+        if (tblUser != null) {
             if (Long.valueOf(tblUserRequest.getRoleId()) > 0) {
                 TblUserRole tblUserRole = new TblUserRole();
-                TblRole tblRole1 = tblRoleRepo.findById(Long.valueOf(tblUserRequest.getRoleId())).orElse(null);
+                TblRole tblRole1 = tblRoleRepo.findById(tblUserRequest.getRoleId()).orElse(null);
                 tblRole1.setRoleId(tblRole1.getRoleId());
                 tblUserRole.setTblUser(tblUser);
                 tblUserRole.setTblRole(tblRole1);
@@ -84,7 +84,6 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
                 tblUserRoleRepo.save(tblUserRole);
             }
 
-//            }
             return tblUser;
 
         } else {
@@ -169,7 +168,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         if (tblUser != null && tblUser.getUserId() > 0) {
             if (Long.valueOf(updateUserRequest.getRoleId()) > 0) {
                 TblUserRole tblUserRole = new TblUserRole();
-                TblRole tblRole1 = tblRoleRepo.findById(Long.valueOf(updateUserRequest.getRoleId())).orElse(null);
+                TblRole tblRole1 = tblRoleRepo.findById(updateUserRequest.getRoleId()).orElse(null);
                 tblRole1.setRoleId(tblRole1.getRoleId());
                 tblUserRole.setTblUser(tblUser);
                 tblUserRole.setTblRole(tblRole1);

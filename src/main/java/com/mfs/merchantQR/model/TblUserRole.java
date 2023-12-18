@@ -25,7 +25,7 @@ public class TblUserRole implements Serializable {
 
 
 	@Column(name="CREATEUSER")
-	private int createuser;
+	private Integer createuser;
 
 
 
@@ -41,15 +41,15 @@ public class TblUserRole implements Serializable {
 
 
 	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
+	private Integer lastupdateuser;
 
 
 
-	@Column(name="STATUS_ID")
-	private int statusId;
+//	@Column(name="STATUS_ID")
+//	private Integer statusId;
 
 	@Column(name="UPDATEINDEX")
-	private int updateindex;
+	private Integer updateindex;
 
 
 
@@ -86,11 +86,11 @@ public class TblUserRole implements Serializable {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
+	public Integer getCreateuser() {
 		return createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(Integer createuser) {
 		this.createuser = createuser;
 	}
 
@@ -114,23 +114,23 @@ public class TblUserRole implements Serializable {
 		return lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(Integer lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
-	public int getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
+//	public int getStatusId() {
+//		return statusId;
+//	}
+//
+//	public void setStatusId(Integer statusId) {
+//		this.statusId = statusId;
+//	}
 
 	public int getUpdateindex() {
 		return updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(Integer updateindex) {
 		this.updateindex = updateindex;
 	}
 
