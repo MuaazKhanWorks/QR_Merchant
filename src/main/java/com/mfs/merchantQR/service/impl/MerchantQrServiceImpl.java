@@ -69,6 +69,8 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         LkpStatus lkpStatus = new LkpStatus();
         lkpStatus.setStatusId(tblUserRequest.getStatusId());
         tblUser.setStatusId(lkpStatus.getStatusId());
+        tblUser.setLastupdateuser(0);
+        tblUser.setUpdateindex(0);
         tblUser = tblUserRepo.save(tblUser);
         if (tblUser != null) {
             if (Long.valueOf(tblUserRequest.getRoleId()) > 0) {
@@ -80,6 +82,8 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
                 tblUserRole.setIsActive("Y");
                 tblUserRole.setCreateuser(tblUser.getCreateuser());
                 tblUserRole.setCreatedate(new Date());
+                tblUserRole.setLastupdateuser(0);
+                tblUserRole.setUpdateindex(0);
 
                 tblUserRoleRepo.save(tblUserRole);
             }
@@ -185,5 +189,11 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         } else {
             return tblUser;
         }
+    }
+
+    @Override
+    public List<TblUser> getAllUsersBySearch(GetAllUsersRequest getAllUsersRequest) {
+        List<TblUser> getAllUsers = tblUserRepo.getAllUsersBySearch(getAllUsersRequest.getName(),getAllUsersRequest.getRole(),getAllUsersRequest.getUser(),getAllUsersRequest.getDate(),getAllUsersRequest.getStatus());
+        return getAllUsers;
     }
 }

@@ -1338,6 +1338,7 @@ public interface Constants {
     String INVALID_BLACKLIST_CNIC = "Empty or Null Black List CNIC";
     String INVALID_CNIC_LENGTH = "CNIC lenght Issue";
     String SAVE_USER = "/createuser";
+    String GET_ALL_USERS = "/getalluser";
     String GET_NAME = "Please Enter Name";
     String GET_PASSWORD="Please Enter Password";
     String GET_ROLE="Please Enter Role";
@@ -1349,4 +1350,5 @@ public interface Constants {
     String UPDATE_USER = "/updateuser";
     String CREATE_USER_FORM_NAME = "CREATE USER";
     String UPDATE_USER_FORM_NAME = "UPDATE USER";
+    String GET_USERS="Please Enter Data";
 }

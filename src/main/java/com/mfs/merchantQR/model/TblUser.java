@@ -1,5 +1,8 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="tbl_user")
 @NamedQuery(name="TblUser.findAll", query="SELECT t FROM TblUser t")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TblUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -94,6 +98,7 @@ public class TblUser implements Serializable {
 	private List<TblMcRequestAction> tblMcRequestActions;
 
 	//bi-directional many-to-one association to TblUserRole
+	@JsonIgnore
 	@OneToMany(mappedBy="tblUser")
 	private List<TblUserRole> tblUserRoles;
 

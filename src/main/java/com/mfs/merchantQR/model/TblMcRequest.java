@@ -1,5 +1,7 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -99,6 +101,7 @@ public class TblMcRequest implements Serializable {
 	private TblMcConfig tblMcConfig;
 
 	//bi-directional many-to-one association to TblUser
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="MAKER_ID")
 	private TblUser tblUser;

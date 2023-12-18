@@ -45,5 +45,17 @@ public class FieldsValidator {
         }
         return fieldError;
     }
+
+    public static List<Error> getAllUserValidator(GetAllUsersRequest getAllUsersRequest) {
+
+        List<Error> fieldError = new ArrayList<>();
+        if (getAllUsersRequest.getName()==null||getAllUsersRequest.getRole()==null||getAllUsersRequest.getUser()==null||getAllUsersRequest.getStatus()==null||getAllUsersRequest.getDate()==null||getAllUsersRequest.getRole()==null) {
+            Error error = new Error();
+            error.setErrorCode(Constants.fieldValidationCode);
+            error.setErrorDescr(Constants.GET_USERS);
+            fieldError.add(error);
+        }
+        return fieldError;
+    }
 }
 
