@@ -48,9 +48,9 @@ public class QrGetApi extends AbstarctApi {
         Response response = new Response();
         String moduleId = env.getProperty(Constants.moduleIdKey).toString();
         logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
-        List<Error> validations = FieldsValidator.getValidatorId(userId);
+//        List<Error> validations = FieldsValidator.getValidatorId(userId);
         TblResponseMessage tblResponseMessage;
-        if (validations.size() <= 0) {
+//        if (validations.size() <= 0) {
             TblUser tblUser = merchantQrService.getUserById(userId);
             if (tblUser != null) {
                 tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
@@ -65,11 +65,11 @@ public class QrGetApi extends AbstarctApi {
                 response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
                 logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
             }
-        } else {
-            response.setResponseCode(Constants.fieldValidationCode);
-            response.setErrors(validations);
-            response.setMessage(Constants.validationFailed);
-        }
+//        } else {
+//            response.setResponseCode(Constants.fieldValidationCode);
+//            response.setErrors(validations);
+//            response.setMessage(Constants.validationFailed);
+//        }
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 
