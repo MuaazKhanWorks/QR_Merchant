@@ -1,5 +1,7 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -66,6 +68,7 @@ public class TblRole implements Serializable {
 //	private LkpStatus lkpStatus;
 
 	//bi-directional many-to-one association to TblUserRole
+	@JsonIgnore
 	@OneToMany(mappedBy="tblRole")
 	private List<TblUserRole> tblUserRoles;
 
