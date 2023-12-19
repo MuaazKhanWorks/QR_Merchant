@@ -247,7 +247,7 @@ public interface Constants {
     String UPDATE_ROLE_RIGHT = "/admin/updateroleright";
     String GET_ALL_USER_ROLE = "/admin/getalluserrole";
     String GET_ALL_ROLE_RIGHT = "/admin/getallroleright";
-    String GET_LOV_DATA = "/admin/getlovdata/{key}";
+    String GET_LOV_DATA = "getlovdata/{key}";
     String TBL_ROLE = "tbl_role";
     String TBL_MENU = "tbl_menu";
     String UPDATE_USER_ROLE = "/admin/updateuserrule";
@@ -1339,6 +1339,7 @@ public interface Constants {
     String INVALID_CNIC_LENGTH = "CNIC lenght Issue";
     String SAVE_USER = "/createuser";
     String GET_ALL_USERS = "/getalluser";
+    String GET_ALL_MERCHANT = "/getallmerchant";
     String GET_NAME = "Please Enter Name";
     String GET_PASSWORD="Please Enter Password";
     String GET_ROLE="Please Enter Role";

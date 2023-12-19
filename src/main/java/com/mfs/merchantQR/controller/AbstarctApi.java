@@ -17,6 +17,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.mfs.merchantQR.dto.*;
+import com.mfs.merchantQR.model.TblResponseMessage;
+import com.mfs.merchantQR.service.MerchantQrService;
+import com.mfs.merchantQR.service.impl.MerchantQrServiceImpl;
 import com.mfs.merchantQR.utils.*;
 import org.primefaces.shaded.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +50,8 @@ public class AbstarctApi {
 
     @Autowired
     private Environment env;
+
+
 
 
 //    @Autowired
@@ -463,6 +468,15 @@ public class AbstarctApi {
     public String generateTransactionCode(String channel, String terminal) {
         LocalDate currentDate = LocalDate.now();
         return String.valueOf(currentDate.getMonthValue()) + currentDate.getDayOfMonth() + channel + terminal + generatePinSalt();
+    }
+
+    public void setResponse(Response response, String type, Object s) {
+        MerchantQrService merchantQrService=new MerchantQrServiceImpl();
+        TblResponseMessage tblResponseMessage;
+        tblResponseMessage = merchantQrService.findByResponseMessageDescr(type);
+        response.setPayLoad(s);
+        response.setResponseCode(tblResponseMessage.getResponseMessageCode());
+        response.setMessage(tblResponseMessage.getResponseMessageDescr());
     }
 }
 

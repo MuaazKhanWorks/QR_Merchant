@@ -196,4 +196,9 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         List<TblUser> getAllUsers = tblUserRepo.getAllUsersBySearch(getAllUsersRequest.getName(),getAllUsersRequest.getRole(),getAllUsersRequest.getUser(),getAllUsersRequest.getDate(),getAllUsersRequest.getStatus());
         return getAllUsers;
     }
+
+    @Override
+    public List<TblMerchant> getAllMerchantBySearch(GetAllMerchantRequest getAllMerchantRequest) {
+        return null;
+    }
 }

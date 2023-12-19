@@ -57,5 +57,17 @@ public class FieldsValidator {
         }
         return fieldError;
     }
+
+    public static List<Error> getAllMerchantValidator(GetAllMerchantRequest getAllMerchantRequest) {
+        List<Error> fieldError = new ArrayList<>();
+        if (getAllMerchantRequest.getMerchantName()==null||getAllMerchantRequest.getMerchantAccountNo()==null||getAllMerchantRequest.getMerchantCreationDate()==null||getAllMerchantRequest.getCreatedBy()==null||getAllMerchantRequest.getStatus()==null) {
+            Error error = new Error();
+            error.setErrorCode(Constants.fieldValidationCode);
+            error.setErrorDescr(Constants.GET_USERS);
+            fieldError.add(error);
+        }
+        return fieldError;
+
+    }
 }
 

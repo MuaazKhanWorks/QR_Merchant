@@ -20,4 +20,5 @@ public interface TblUserRepo extends JpaRepository<TblUser,Integer> {
             "AND U.STATUS_ID = COALESCE(NULLIF(:status,''),U.STATUS_ID)", nativeQuery = true)
     List<TblUser> getAllUsersBySearch(String name, String role,String user, String date, String status);
 
+    List<TblUser> findByIsActive(String setYes);
 }
