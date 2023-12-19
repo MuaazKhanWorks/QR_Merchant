@@ -26,4 +26,5 @@ public interface MerchantQrService {
     TblUser getUserById(int userId);
 
     TblMcRequest getUserUpdateCheckerById(int mcRequestId);
+
 }

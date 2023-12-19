@@ -49,6 +49,9 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
     @Autowired
     private TblMcRequestRepo tblMcRequestRepo;
 
+    @Autowired
+    private TblMerchantRepo tblMerchantRepo;
+
 
     @Override
     public TblResponseMessage findByResponseMessageDescr(String success) {
@@ -199,7 +202,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
 
     @Override
     public List<TblMerchant> getAllMerchantBySearch(GetAllMerchantRequest getAllMerchantRequest) {
-        return null;
+        return tblMerchantRepo.getAllMerchantBySearch(getAllMerchantRequest.getMerchantName(),getAllMerchantRequest.getMerchantAccountNo(),getAllMerchantRequest.getMerchantCreationDate(),getAllMerchantRequest.getCreatedBy(),getAllMerchantRequest.getStatus());
     }
 
     @Override
