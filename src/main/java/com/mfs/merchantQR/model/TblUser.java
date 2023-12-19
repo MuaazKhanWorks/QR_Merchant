@@ -98,7 +98,7 @@ public class TblUser implements Serializable {
 	private List<TblMcRequestAction> tblMcRequestActions;
 
 	//bi-directional many-to-one association to TblUserRole
-	@JsonIgnore
+
 	@OneToMany(mappedBy="tblUser")
 	private List<TblUserRole> tblUserRoles;
 

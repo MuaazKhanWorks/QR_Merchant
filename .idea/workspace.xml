@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d350e80f-2e9f-4f55-97a9-2e193b40eb56" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblUserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblUserRole.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702443109359</updated>
       <workItem from="1702443113321" duration="40957000" />
-      <workItem from="1702644089225" duration="25259000" />
+      <workItem from="1702644089225" duration="25531000" />
     </task>
     <servers />
   </component>

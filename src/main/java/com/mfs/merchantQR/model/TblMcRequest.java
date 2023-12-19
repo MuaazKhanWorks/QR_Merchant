@@ -101,7 +101,7 @@ public class TblMcRequest implements Serializable {
 	private TblMcConfig tblMcConfig;
 
 	//bi-directional many-to-one association to TblUser
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name="MAKER_ID")
 	private TblUser tblUser;
