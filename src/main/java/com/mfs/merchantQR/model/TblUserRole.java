@@ -64,7 +64,6 @@ public class TblUserRole implements Serializable {
 	private TblRole tblRole;
 
 	//bi-directional many-to-one association to TblUser
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private TblUser tblUser;
