@@ -51,7 +51,7 @@ public class QrUpdateApi extends AbstarctApi {
         Request jsonRequest = convertStringToRequestObject(data);
         TblResponseMessage tblResponseMessage = null;
         Response response = new Response();
-        logs(Constants.UPDATE_SUBSCRIPTION, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
+        logs(Constants.UPDATE_USER, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
         if (loggedUserDetail != null) {
             logs(Constants.UPDATE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());

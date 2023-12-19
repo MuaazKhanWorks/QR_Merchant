@@ -4,7 +4,6 @@
     <list default="true" id="d350e80f-2e9f-4f55-97a9-2e193b40eb56" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrUpdateApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrUpdateApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702443109359</updated>
       <workItem from="1702443113321" duration="40957000" />
-      <workItem from="1702644089225" duration="26699000" />
+      <workItem from="1702644089225" duration="27717000" />
     </task>
     <servers />
   </component>
@@ -163,6 +162,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="463" y="170" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1702465152483" />
+    <state x="515" y="264" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1702989475190">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="515" y="264" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1050@0.0.1920.1050" timestamp="1702989475190" />
     <state x="667" y="281" width="586" height="488" key="find.popup" timestamp="1702894253015">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
