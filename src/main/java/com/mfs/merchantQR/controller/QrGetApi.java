@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mfs.merchantQR.controller.*;
 import com.mfs.merchantQR.dto.*;
 import com.mfs.merchantQR.dto.*;
+import com.mfs.merchantQR.dto.Error;
 import com.mfs.merchantQR.model.*;
 import com.mfs.merchantQR.service.*;
 import com.mfs.merchantQR.utils.*;
@@ -40,127 +41,77 @@ public class QrGetApi extends AbstarctApi {
     private MerchantQrService merchantQrService;
 
 
-//    @RequestMapping(value = Constants.getSegmentById, method = RequestMethod.GET)
-//    public ResponseEntity<Response> getSegmentById(@PathVariable String segmentId, HttpServletRequest request) throws JsonProcessingException {
-//        String methodName = new Object() {
-//        }.getClass().getEnclosingMethod().getName();
-//        Response response = new Response();
-//        String moduleId = env.getProperty(Constants.moduleIdKey).toString();
-//        logs(Constants.getKycAttributeById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
-//        List<Error> validations = FieldsValidator.getValidatorId(Long.valueOf(segmentId));
-//        TblResponseMessage tblResponseMessage;
-//        if (validations.size() <= 0) {
-//            LkpSegment lkpSegment = merchantQrService.getSegmentById(Long.valueOf(segmentId));
-//            if(lkpSegment.getUploadAgreement()!=null) {
-//                lkpSegment.getUploadAgreement();
-//                File file = new File(lkpSegment.getUploadAgreement());
-//
-//                try {
-//                    byte[] fileContent = Files.readAllBytes(file.toPath());
-//                    String base64Content = Base64.getEncoder().encodeToString(fileContent);
-//                    lkpSegment.setBase64content(base64Content);
-//
-//                } catch (IOException e) {
-//                    // Handle the exception appropriately
-//                    e.printStackTrace();
-//
-//                }
-//            }
-//            if (lkpSegment != null) {
-//                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
-//                response.setPayLoad(lkpSegment);
-//                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-//                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-//                logs(Constants.getKycAttributeById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
-//            } else {
-//                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
-//                response.setPayLoad(lkpSegment);
-//                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-//                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-//                logs(Constants.getKycAttributeById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
-//            }
-//        } else {
-//            response.setResponseCode(Constants.fieldValidationCode);
-//            response.setErrors(validations);
-//            response.setMessage(Constants.validationFailed);
-//        }
-//        return convertStringToResponseObject(response, response.getResponseCode());
-//    }
-//
-//    @RequestMapping(value = Constants.getSegmentsUpdateCheckerById, method = RequestMethod.GET)
-//    public ResponseEntity<Response> getSegmentsUpdateCheckerById(@PathVariable String mcRequestId, HttpServletRequest request) throws JsonProcessingException {
-//        String methodName = new Object() {
-//        }.getClass().getEnclosingMethod().getName();
-//        Response response = new Response();
-//        String moduleId = env.getProperty(Constants.moduleIdKey).toString();
-//        logs(Constants.getSegmentsUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
-//        List<Error> validations = FieldsValidator.getSegmentId(Long.valueOf(mcRequestId));
-//        if (validations.size() <= 0) {
-//            TblMcRequest tblMcRequest = merchantQrService.getSegmentsUpdateCheckerById(Long.valueOf(mcRequestId));
-//            String jsonString=null;
-//            LkpSegment lkpSegment =new LkpSegment();
-//            SegmentRequest segmentRequest = new SegmentRequest();
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            segmentRequest=objectMapper.readValue(tblMcRequest.getUpdateJson(), SegmentRequest.class);
-//            ModelMapper modelMapper = new ModelMapper();
-//            modelMapper.map(segmentRequest, lkpSegment);
-//
-////             lkpSegment=merchantQrService.getSegmentById(segmentRequest.getSegmentId());
-//            if(segmentRequest.getBusinessTypeId()!=null) {
-//                LkpBusinessType lkpBusinessType = merchantQrService.getLkpBusinessTypeById(segmentRequest.getBusinessTypeId().longValue());
-//                lkpSegment.setLkpBusinessType(lkpBusinessType);
-//            }
-//            if(segmentRequest.getRegionId()!=null) {
-//                LkpRegion lkpRegion = merchantQrService.getLkpRegionByid(segmentRequest.getRegionId().longValue());
-//                lkpSegment.setLkpRegion(lkpRegion);
-//            }
-//            if (segmentRequest.getSalesRoleDetailId()!=null) {
-//
-//                TblSalesRoleDetail tblSalesRoleDetail = merchantQrService.getTblSalesRoleDetailById(segmentRequest.getSalesRoleDetailId().longValue());
-//                lkpSegment.setTblSalesRoleDetail(tblSalesRoleDetail);
-//            }
-//            TblResponseMessage tblResponseMessage;
-//            LkpSegment lkpSegment1 = merchantQrService.getSegmentById(lkpSegment.getSegmentId());
-//            if(lkpSegment1.getUploadAgreement()==null || lkpSegment1.getUploadAgreement()==""){
-//                lkpSegment.setBase64content(segmentRequest.getUploadAgreement());
-//                lkpSegment.setUploadAgreement("/opt/wildfly/standalone/documents/" + segmentRequest.getSegmentId()+".pdf");
-//            }
-//
-//            if(lkpSegment1.getUploadAgreement()!=null) {
-//                lkpSegment1.getUploadAgreement();
-//                File file = new File(lkpSegment1.getUploadAgreement());
-//                try {
-//                    byte[] fileContent = Files.readAllBytes(file.toPath());
-//                    String base64Content = Base64.getEncoder().encodeToString(fileContent);
-//                    lkpSegment.setBase64content(base64Content);
-//                    lkpSegment.setUploadAgreement(lkpSegment1.getUploadAgreement());
-//
-//                } catch (IOException e) {
-//                    // Handle the exception appropriately
-//                    e.printStackTrace();
-//
-//                }
-//            }
-//            if (lkpSegment != null) {
-//                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
-//                response.setPayLoad(lkpSegment);
-//                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-//                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-//                logs(Constants.getSegmentsUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
-//            } else {
-//                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
-//                response.setPayLoad(lkpSegment);
-//                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-//                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-//                logs(Constants.getSegmentsUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
-//            }
-//        } else {
-//            response.setResponseCode(Constants.fieldValidationCode);
-//            response.setErrors(validations);
-//            response.setMessage(Constants.validationFailed);
-//        }
-//        return convertStringToResponseObject(response, response.getResponseCode());
-//    }
+    @RequestMapping(value = Constants.getUserById, method = RequestMethod.GET)
+    public ResponseEntity<Response> getUserById(@PathVariable int userId, HttpServletRequest request) throws JsonProcessingException {
+        String methodName = new Object() {
+        }.getClass().getEnclosingMethod().getName();
+        Response response = new Response();
+        String moduleId = env.getProperty(Constants.moduleIdKey).toString();
+        logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
+        List<Error> validations = FieldsValidator.getValidatorId(userId);
+        TblResponseMessage tblResponseMessage;
+        if (validations.size() <= 0) {
+            TblUser tblUser = merchantQrService.getUserById(userId);
+            if (tblUser != null) {
+                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
+                response.setPayLoad(tblUser);
+                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+                logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+            } else {
+                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
+                response.setPayLoad(tblUser);
+                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+                logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+            }
+        } else {
+            response.setResponseCode(Constants.fieldValidationCode);
+            response.setErrors(validations);
+            response.setMessage(Constants.validationFailed);
+        }
+        return convertStringToResponseObject(response, response.getResponseCode());
+    }
+
+    @RequestMapping(value = Constants.getUserUpdateCheckerById, method = RequestMethod.GET)
+    public ResponseEntity<Response> getUserUpdateCheckerById(@PathVariable int mcRequestId, HttpServletRequest request) throws JsonProcessingException {
+        String methodName = new Object() {
+        }.getClass().getEnclosingMethod().getName();
+        Response response = new Response();
+        TblResponseMessage tblResponseMessage=null;
+        String moduleId = env.getProperty(Constants.moduleIdKey);
+        logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
+        List<Error> validations = FieldsValidator.getValidatorId(mcRequestId);
+        if (validations.size() <= 0) {
+
+            TblMcRequest tblMcRequest = merchantQrService.getUserUpdateCheckerById(mcRequestId);
+            TblUser tblUser =new TblUser();
+            UpdateUserRequest updateUserRequest = new UpdateUserRequest();
+            ObjectMapper objectMapper = new ObjectMapper();
+            updateUserRequest=objectMapper.readValue(tblMcRequest.getUpdateJson(), UpdateUserRequest.class);
+            ModelMapper modelMapper = new ModelMapper();
+            modelMapper.map(updateUserRequest, tblUser);
+
+            if (tblUser != null) {
+                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
+                response.setPayLoad(tblUser);
+                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+                logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+            } else {
+                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
+                response.setPayLoad(tblUser);
+                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+                logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+            }
+        } else {
+            response.setResponseCode(Constants.fieldValidationCode);
+            response.setErrors(validations);
+            response.setMessage(Constants.validationFailed);
+        }
+        return convertStringToResponseObject(response, response.getResponseCode());
+    }
 
 
 }

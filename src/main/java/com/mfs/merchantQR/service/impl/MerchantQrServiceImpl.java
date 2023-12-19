@@ -12,10 +12,7 @@ import com.mfs.merchantQR.controller.AbstarctApi;
 import com.mfs.merchantQR.dto.*;
 import com.mfs.merchantQR.dto.Error;
 import com.mfs.merchantQR.model.*;
-import com.mfs.merchantQR.repo.TblResponseMessageRepo;
-import com.mfs.merchantQR.repo.TblRoleRepo;
-import com.mfs.merchantQR.repo.TblUserRepo;
-import com.mfs.merchantQR.repo.TblUserRoleRepo;
+import com.mfs.merchantQR.repo.*;
 import com.mfs.merchantQR.service.CommonService;
 import com.mfs.merchantQR.service.MerchantQrService;
 import com.mfs.merchantQR.utils.Constants;
@@ -48,6 +45,9 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
 
     @Autowired
     private CommonService commonService;
+
+    @Autowired
+    private TblMcRequestRepo tblMcRequestRepo;
 
 
     @Override
@@ -201,4 +201,15 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
     public List<TblMerchant> getAllMerchantBySearch(GetAllMerchantRequest getAllMerchantRequest) {
         return null;
     }
+
+    @Override
+    public TblUser getUserById(int userId) {
+        return tblUserRepo.findById(userId).orElse(null);
+    }
+
+    @Override
+    public TblMcRequest getUserUpdateCheckerById(int mcRequestId) {
+        return tblMcRequestRepo.findByMcRequestId(mcRequestId);
+    }
+
 }

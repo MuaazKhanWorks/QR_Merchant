@@ -69,5 +69,16 @@ public class FieldsValidator {
         return fieldError;
 
     }
+
+    public static List<Error> getValidatorId(int userId) {
+        List<Error> fieldError = new ArrayList<>();
+        if (userId!=0) {
+            Error error = new Error();
+            error.setErrorCode(Constants.fieldValidationCode);
+            error.setErrorDescr(Constants.GET_USERS);
+            fieldError.add(error);
+        }
+        return fieldError;
+    }
 }
 

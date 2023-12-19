@@ -679,9 +679,9 @@ public interface Constants {
     String getNetworkType = "Network Type is Required";
     String getUuid = "UUID is Required";
     String getDeviceType = "Device Type is Required";
-    String getSegmentById = "/segment/getSegmentById/{segmentId}";
+    String getUserById = "/getUserById/{userId}";
     String updateSegmentEndPoint = "/segments/modifysegment";
-    String getSegmentsUpdateCheckerById = "/segment/getSegmentsUpdateCheckerById/{mcRequestId}";
+    String getUserUpdateCheckerById = "/getUserUpdateCheckerById/{mcRequestId}";
     String pinValidationSuccess = "Pin Verified Successfully";
     String getAccounttype = "Account Type is Required";
     String mobApp = "Zindigi";

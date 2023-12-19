@@ -2,10 +2,7 @@ package com.mfs.merchantQR.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mfs.merchantQR.dto.*;
-import com.mfs.merchantQR.model.TblMerchant;
-import com.mfs.merchantQR.model.TblResponseMessage;
-import com.mfs.merchantQR.model.TblRole;
-import com.mfs.merchantQR.model.TblUser;
+import com.mfs.merchantQR.model.*;
 
 import java.text.ParseException;
 import java.util.List;
@@ -26,4 +23,7 @@ public interface MerchantQrService {
 
     List<TblMerchant> getAllMerchantBySearch(GetAllMerchantRequest getAllMerchantRequest);
 
+    TblUser getUserById(int userId);
+
+    TblMcRequest getUserUpdateCheckerById(int mcRequestId);
 }

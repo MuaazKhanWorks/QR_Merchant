@@ -171,7 +171,7 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public TblMcRequest getMcRequestCheckerById(Long mcRequestId) {
+    public TblMcRequest getMcRequestCheckerById(int mcRequestId) {
         return tblMcRequestRepo.findByMcRequestId(mcRequestId);
     }
 
