@@ -196,13 +196,14 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
 
     @Override
     public List<TblUser> getAllUsersBySearch(GetAllUsersRequest getAllUsersRequest) {
-        List<TblUser> getAllUsers = tblUserRepo.getAllUsersBySearch(getAllUsersRequest.getName(),getAllUsersRequest.getRole(),getAllUsersRequest.getUser(),getAllUsersRequest.getDate(),getAllUsersRequest.getStatus());
+        List<TblUser> getAllUsers = tblUserRepo.getAllUsersBySearch(getAllUsersRequest.getName(), getAllUsersRequest.getRole(), getAllUsersRequest.getUser(), getAllUsersRequest.getDate(), getAllUsersRequest.getStatus());
         return getAllUsers;
     }
 
     @Override
     public List<TblMerchant> getAllMerchantBySearch(GetAllMerchantRequest getAllMerchantRequest) {
-        return tblMerchantRepo.getAllMerchantBySearch(getAllMerchantRequest.getMerchantName(),getAllMerchantRequest.getMerchantAccountNo(),getAllMerchantRequest.getMerchantCreationDate(),getAllMerchantRequest.getCreatedBy(),getAllMerchantRequest.getStatus());
+        List<TblMerchant> tblMerchants = tblMerchantRepo.getAllMerchantBySearch(getAllMerchantRequest.getMerchantName(), getAllMerchantRequest.getMerchantAccountNo(), getAllMerchantRequest.getMerchantCreationDate(), getAllMerchantRequest.getCreatedBy(), getAllMerchantRequest.getStatus());
+        return tblMerchants;
     }
 
     @Override
