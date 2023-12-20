@@ -271,7 +271,7 @@ public class QrPostApi extends AbstarctApi {
         Response response = new Response();
         logs(Constants.GET_ALL_MERCHANT, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
-//        if (loggedUserDetail != null) {
+        if (loggedUserDetail != null) {
             logs(Constants.GET_ALL_MERCHANT, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());
             GetAllMerchantRequest getAllMerchantRequest = objectMapper.readValue(convertObjecttoJson(jsonRequest.getPayLoad()), GetAllMerchantRequest.class);
             List<Error> validations = FieldsValidator.getAllMerchantValidator(getAllMerchantRequest);
@@ -296,14 +296,14 @@ public class QrPostApi extends AbstarctApi {
                 response.setMessage(Constants.validationFailed);
                 return convertStringToResponseObject(response, response.getResponseCode());
             }
-//        } else {
-//            response.setPayLoad(null);
-//            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
-//            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
-//            response.setMessage(Constants.sessionExpired);
-//            logs(Constants.GET_ALL_MERCHANT, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
-//            return convertStringToResponseObject(response, response.getResponseCode());
-//        }
+        } else {
+            response.setPayLoad(null);
+            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
+            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
+            response.setMessage(Constants.sessionExpired);
+            logs(Constants.GET_ALL_MERCHANT, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
+            return convertStringToResponseObject(response, response.getResponseCode());
+        }
         logs(Constants.GET_ALL_MERCHANT, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), jsonRequest, Constants.endingMethodInfo, response);
         return convertStringToResponseObject(response, response.getResponseCode());
     }
