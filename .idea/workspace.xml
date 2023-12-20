@@ -86,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702443109359</updated>
       <workItem from="1702443113321" duration="40957000" />
-      <workItem from="1702644089225" duration="27717000" />
+      <workItem from="1702644089225" duration="30693000" />
     </task>
     <servers />
   </component>
@@ -170,66 +170,5 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="667" y="281" width="586" height="488" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1702894253015" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/PrintQr/QRCodeGenerator.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrPostApi.java</url>
-          <line>174</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrUpdateApi.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java</url>
-          <line>134</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java</url>
-          <line>158</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrPostApi.java</url>
-          <line>233</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/lookup/LookupGetApis.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/LookupServiceImpl.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
