@@ -308,19 +308,38 @@ public class QrPostApi extends AbstarctApi {
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 
+//    @RequestMapping(value = Constants.QR_CODE, method = RequestMethod.GET)
+//    public ResponseEntity<byte[]> generateBarcodeImage(@PathVariable Integer merchantId) {
+//        TblMerchant tblMerchant = tblMerchantRepo.findById(merchantId).orElse(null);
+//
+//        if (tblMerchant != null) {
+//
+//            byte[] qrCodeImageBytes = QRCodeGenerator.generateQRCode(tblMerchant.getQrCode());
+//
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.setContentType(MediaType.IMAGE_PNG);
+//            headers.setContentLength(qrCodeImageBytes.length);
+//
+//            return new ResponseEntity<>(qrCodeImageBytes, headers, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+
     @RequestMapping(value = Constants.QR_CODE, method = RequestMethod.GET)
-    public ResponseEntity<byte[]> generateBarcodeImage(@PathVariable Integer merchantId) {
+    public ResponseEntity<String> generateBarcodeImage(@PathVariable Integer merchantId) {
         TblMerchant tblMerchant = tblMerchantRepo.findById(merchantId).orElse(null);
 
         if (tblMerchant != null) {
 
-            byte[] qrCodeImageBytes = QRCodeGenerator.generateQRCode(tblMerchant.getQrCode());
+            // Generate QR code image as Base64 using the QRCodeGenerator class
+            String qrCodeBase64 = QRCodeGenerator.generateQRCode(tblMerchant.getQrCode());
 
             HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.IMAGE_PNG);
-            headers.setContentLength(qrCodeImageBytes.length);
+            headers.setContentType(MediaType.TEXT_PLAIN);
 
-            return new ResponseEntity<>(qrCodeImageBytes, headers, HttpStatus.OK);
+            return new ResponseEntity<>(qrCodeBase64, headers, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

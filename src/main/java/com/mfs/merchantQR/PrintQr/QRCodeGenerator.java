@@ -15,9 +15,26 @@ import com.google.zxing.common.BitMatrix;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 public class QRCodeGenerator {
-    public static byte[] generateQRCode(String data) {
+//    public static byte[] generateQRCode(String data) {
+//        try {
+//            // Use ZXing library to generate QR code image
+//            MultiFormatWriter writer = new MultiFormatWriter();
+//            BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 200, 200);
+//
+//            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//            MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
+//
+//            return outputStream.toByteArray();
+//        } catch (WriterException | IOException e) {
+//            e.printStackTrace(); // Handle exceptions appropriately
+//            return new byte[0];  // Return an empty byte array in case of an error
+//        }
+//    }
+
+    public static String generateQRCode(String data) {
         try {
             // Use ZXing library to generate QR code image
             MultiFormatWriter writer = new MultiFormatWriter();
@@ -26,11 +43,14 @@ public class QRCodeGenerator {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
 
-            return outputStream.toByteArray();
+            // Convert the byte array to Base64
+            byte[] qrCodeImageBytes = outputStream.toByteArray();
+            return Base64.getEncoder().encodeToString(qrCodeImageBytes);
         } catch (WriterException | IOException e) {
             e.printStackTrace(); // Handle exceptions appropriately
-            return new byte[0];  // Return an empty byte array in case of an error
+            return "";  // Return an empty string in case of an error
         }
     }
+
 
 }
