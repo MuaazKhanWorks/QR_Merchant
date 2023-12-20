@@ -1,5 +1,7 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -59,6 +61,7 @@ public class TblMerchant implements Serializable {
 
 	//bi-directional many-to-one association to LkpStatus
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="STATUS_ID")
 	private LkpStatus lkpStatus;
 
