@@ -155,7 +155,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         return response;
     }
 
-    
+
     private TblUser updateUser(UpdateUserRequest updateUserRequest, int valueOf) {
         TblUser tblUser = tblUserRepo.findById(updateUserRequest.getUserId()).orElse(null);
         tblUser.setName(updateUserRequest.getName());
@@ -175,20 +175,21 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         tblUser = tblUserRepo.saveAndFlush(tblUser);
         if (tblUser != null && tblUser.getUserId() > 0) {
             if (Long.valueOf(updateUserRequest.getRoleId()) > 0) {
-                TblUserRole tblUserRole = new TblUserRole();
-                TblRole tblRole1 = tblRoleRepo.findById(updateUserRequest.getRoleId()).orElse(null);
-                tblRole1.setRoleId(tblRole1.getRoleId());
-                tblUserRole.setTblUser(tblUser);
-                tblUserRole.setTblRole(tblRole1);
-                tblUserRole.setIsActive("Y");
-                tblUserRole.setCreateuser(tblUser.getCreateuser());
-                tblUserRole.setCreatedate(new Date());
-                tblUserRole.setLastupdateuser(valueOf);
-                tblUserRole.setUpdateindex(tblUserRole.getUpdateindex() == 0 ? tblUserRole.getUpdateindex() + 1 : 1);
+                for (TblUserRole tblUserRole1 : tblUser.getTblUserRoles()) {
+                    TblUserRole tblUserRole = tblUserRoleRepo.findById(tblUserRole1.getUserRoleId()).orElse(null);
+                    TblRole tblRole1 = tblRoleRepo.findById(updateUserRequest.getRoleId()).orElse(null);
+                    tblRole1.setRoleId(tblRole1.getRoleId());
+                    tblUserRole.setTblUser(tblUser);
+                    tblUserRole.setTblRole(tblRole1);
+                    tblUserRole.setIsActive("Y");
+                    tblUserRole.setCreateuser(tblUser.getCreateuser());
+                    tblUserRole.setCreatedate(new Date());
+                    tblUserRole.setLastupdateuser(valueOf);
+                    tblUserRole.setUpdateindex(tblUserRole.getUpdateindex() == 0 ? tblUserRole.getUpdateindex() + 1 : 1);
 
-                tblUserRoleRepo.save(tblUserRole);
+                    tblUserRoleRepo.save(tblUserRole);
+                }
             }
-
 //            }
             return tblUser;
 
