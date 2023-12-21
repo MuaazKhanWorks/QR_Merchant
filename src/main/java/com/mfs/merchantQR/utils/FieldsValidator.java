@@ -80,5 +80,17 @@ public class FieldsValidator {
         }
         return fieldError;
     }
+
+    public static List<Error> getLoginValidator(LoginRequest loginRequest) {
+        List<Error> fieldError = new ArrayList<>();
+        if (loginRequest.getUserName()==null && loginRequest.getUserPassword()==null) {
+            Error error = new Error();
+            error.setErrorCode(Constants.fieldValidationCode);
+            error.setErrorDescr(Constants.GET_USERS);
+            fieldError.add(error);
+        }
+        return fieldError;
+
+    }
 }
 

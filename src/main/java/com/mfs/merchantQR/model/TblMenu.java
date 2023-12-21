@@ -1,7 +1,5 @@
 package com.mfs.merchantQR.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -9,18 +7,18 @@ import java.util.List;
 
 
 /**
- * The persistent class for the tbl_role database table.
+ * The persistent class for the tbl_menu database table.
  * 
  */
 @Entity
-@Table(name="tbl_role")
-@NamedQuery(name="TblRole.findAll", query="SELECT t FROM TblRole t")
-public class TblRole implements Serializable {
+@Table(name="tbl_menu")
+@NamedQuery(name="TblMenu.findAll", query="SELECT t FROM TblMenu t")
+public class TblMenu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="ROLE_ID")
-	private int roleId;
+	@Column(name="MENU_ID")
+	private int menuId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="CREATEDATE")
@@ -29,6 +27,10 @@ public class TblRole implements Serializable {
 
 	@Column(name="CREATEUSER")
 	private int createuser;
+
+
+	@Column(name="ICON")
+	private String icon;
 
 
 
@@ -41,18 +43,36 @@ public class TblRole implements Serializable {
 	private Date lastupdatedate;
 
 
-
 	@Column(name="LASTUPDATEUSER")
 	private int lastupdateuser;
 
 
-	@Column(name="ROLE_CODE")
-	private String roleCode;
+
+	@Column(name="MENU_CODE")
+	private String menuCode;
+
+
+	@Column(name="MENU_DESCR")
+	private String menuDescr;
+
+
+	@Column(name="MENU_PATH")
+	private String menuPath;
 
 
 
-	@Column(name="ROLE_DESCR")
-	private String roleDescr;
+	@Column(name="MENU_TYPE")
+	private String menuType;
+
+
+
+	@Column(name="PARENT_MENU")
+	private int parentMenu;
+
+
+
+	@Column(name="SORT_SEQ")
+	private String sortSeq;
 
 
 
@@ -60,33 +80,23 @@ public class TblRole implements Serializable {
 	private int updateindex;
 
 
-//	//bi-directional many-to-one association to LkpStatus
-//	@ManyToOne
-//	@JoinColumn(name="STATUS_ID")
-//	private LkpStatus lkpStatus;
-
 	//bi-directional many-to-one association to TblRoleRight
-	@OneToMany(mappedBy="tblRole")
+	@OneToMany(mappedBy="tblMenu")
 	private List<TblRoleRight> tblRoleRights;
 
-	//bi-directional many-to-one association to TblUserRole
-	@JsonIgnore
-	@OneToMany(mappedBy="tblRole")
-	private List<TblUserRole> tblUserRoles;
-
-	public TblRole() {
-	}
-
-	public int getRoleId() {
-		return this.roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public TblMenu() {
 	}
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
+	}
+
+	public int getMenuId() {
+		return menuId;
+	}
+
+	public void setMenuId(int menuId) {
+		this.menuId = menuId;
 	}
 
 	public Date getCreatedate() {
@@ -103,6 +113,14 @@ public class TblRole implements Serializable {
 
 	public void setCreateuser(int createuser) {
 		this.createuser = createuser;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public String getIsActive() {
@@ -129,20 +147,52 @@ public class TblRole implements Serializable {
 		this.lastupdateuser = lastupdateuser;
 	}
 
-	public String getRoleCode() {
-		return roleCode;
+	public String getMenuCode() {
+		return menuCode;
 	}
 
-	public void setRoleCode(String roleCode) {
-		this.roleCode = roleCode;
+	public void setMenuCode(String menuCode) {
+		this.menuCode = menuCode;
 	}
 
-	public String getRoleDescr() {
-		return roleDescr;
+	public String getMenuDescr() {
+		return menuDescr;
 	}
 
-	public void setRoleDescr(String roleDescr) {
-		this.roleDescr = roleDescr;
+	public void setMenuDescr(String menuDescr) {
+		this.menuDescr = menuDescr;
+	}
+
+	public String getMenuPath() {
+		return menuPath;
+	}
+
+	public void setMenuPath(String menuPath) {
+		this.menuPath = menuPath;
+	}
+
+	public String getMenuType() {
+		return menuType;
+	}
+
+	public void setMenuType(String menuType) {
+		this.menuType = menuType;
+	}
+
+	public int getParentMenu() {
+		return parentMenu;
+	}
+
+	public void setParentMenu(int parentMenu) {
+		this.parentMenu = parentMenu;
+	}
+
+	public String getSortSeq() {
+		return sortSeq;
+	}
+
+	public void setSortSeq(String sortSeq) {
+		this.sortSeq = sortSeq;
 	}
 
 	public int getUpdateindex() {
@@ -152,8 +202,6 @@ public class TblRole implements Serializable {
 	public void setUpdateindex(int updateindex) {
 		this.updateindex = updateindex;
 	}
-
-
 
 	public List<TblRoleRight> getTblRoleRights() {
 		return this.tblRoleRights;
@@ -165,38 +213,16 @@ public class TblRole implements Serializable {
 
 	public TblRoleRight addTblRoleRight(TblRoleRight tblRoleRight) {
 		getTblRoleRights().add(tblRoleRight);
-		tblRoleRight.setTblRole(this);
+		tblRoleRight.setTblMenu(this);
 
 		return tblRoleRight;
 	}
 
 	public TblRoleRight removeTblRoleRight(TblRoleRight tblRoleRight) {
 		getTblRoleRights().remove(tblRoleRight);
-		tblRoleRight.setTblRole(null);
+		tblRoleRight.setTblMenu(null);
 
 		return tblRoleRight;
-	}
-
-	public List<TblUserRole> getTblUserRoles() {
-		return this.tblUserRoles;
-	}
-
-	public void setTblUserRoles(List<TblUserRole> tblUserRoles) {
-		this.tblUserRoles = tblUserRoles;
-	}
-
-	public TblUserRole addTblUserRole(TblUserRole tblUserRole) {
-		getTblUserRoles().add(tblUserRole);
-		tblUserRole.setTblRole(this);
-
-		return tblUserRole;
-	}
-
-	public TblUserRole removeTblUserRole(TblUserRole tblUserRole) {
-		getTblUserRoles().remove(tblUserRole);
-		tblUserRole.setTblRole(null);
-
-		return tblUserRole;
 	}
 
 }

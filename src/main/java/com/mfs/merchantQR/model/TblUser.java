@@ -7,6 +7,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -102,9 +103,30 @@ public class TblUser implements Serializable {
 	@OneToMany(mappedBy="tblUser")
 	private List<TblUserRole> tblUserRoles;
 
+	@Transient
+	private Map<String, List<TblMenu>> menuListMap;
+
+	@Transient
+	private String token;
+
 	public TblUser() {
 	}
 
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Map<String, List<TblMenu>> getMenuListMap() {
+		return menuListMap;
+	}
+
+	public void setMenuListMap(Map<String, List<TblMenu>> menuListMap) {
+		this.menuListMap = menuListMap;
+	}
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -323,5 +345,6 @@ public class TblUser implements Serializable {
 
 		return tblUserRole;
 	}
+
 
 }

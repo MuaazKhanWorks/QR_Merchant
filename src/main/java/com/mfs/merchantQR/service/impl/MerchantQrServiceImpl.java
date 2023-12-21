@@ -25,8 +25,10 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrService {
@@ -218,6 +220,58 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
     @Override
     public TblMcRequest getUserUpdateCheckerById(int mcRequestId) {
         return tblMcRequestRepo.findByMcRequestId(mcRequestId);
+    }
+
+    @Override
+    public TblUser loginMember(String email, String password) {
+        TblUser tblUser = tblUserRepo.findByNameAndPassword(email, password);
+        Map<Integer, List<TblMenu>> parentChildMap = tblUser.getTblUserRoles().stream()
+                .filter(userRole -> userRole.getIsActive().equals(Constants.SET_YES)) // Filter active user roles
+                .flatMap(userRole -> userRole.getTblRole().getTblRoleRights().stream()
+                        .filter(roleRight -> roleRight.getIsActive().equals(Constants.SET_YES)) // Only active TblRoleRight
+                        .map(TblRoleRight::getTblMenu)
+                )
+                .filter(menu -> menu.getParentMenu() != 0) // Filter out menus without a parent
+                .filter(menu -> menu.getIsActive().equals(Constants.SET_YES)) // Filter active menus
+                .collect(Collectors.groupingBy(
+                        TblMenu::getParentMenu,
+                        Collectors.toList()
+                ));
+
+        Map<String, List<TblMenu>> parentChildStringMap = new HashMap<>();
+
+        tblUser.getTblUserRoles().stream()
+                .flatMap(p -> p.getTblRole().getTblRoleRights().stream())
+                .filter(a -> parentChildMap.keySet().contains(a.getTblMenu().getMenuId()) && a.getTblRole().getIsActive().equals(Constants.SET_YES) && a.getIsActive().equals(Constants.SET_YES))
+                .forEach(a -> {
+                    for (TblMenu tblMenu1 : parentChildMap.get(a.getTblMenu().getMenuId())) {
+//                        tblMenu1.setViewAllowed(a.getViewAllowed());
+//                        tblMenu1.setInsertAllowed(a.getInsertAllowed());
+//                        tblMenu1.setDeleteAllowed(a.getDeleteAllowed());
+//                        tblMenu1.setUpdateAllowed(a.getUpdateAllowed());
+                    }
+                    parentChildStringMap.put(a.getTblMenu().getMenuDescr(), parentChildMap.get(a.getTblMenu().getMenuId()));
+                });
+
+        /*for (Map.Entry<String, List<TblMenu>> entry : parentChildStringMap.entrySet()) {
+            List<TblMenu> tblMenuList = entry.getValue();
+            tblUser.getTblUserRoles().stream()
+                    .flatMap(p -> p.getTblRole().getTblRoleRights().stream())
+                    .forEach(a ->
+                            tblMenuList.stream()
+                                    .filter(tblMenu1 -> tblMenu1.getMenuId().equals(a.getTblMenu().getMenuId()))
+                                    .forEach(tblMenu1 -> {
+                                        tblMenu1.setViewAllowed(a.getViewAllowed());
+                                        tblMenu1.setInsertAllowed(a.getInsertAllowed());
+                                        tblMenu1.setDeleteAllowed(a.getDeleteAllowed());
+                                        tblMenu1.setUpdateAllowed(a.getUpdateAllowed());
+                                    })
+                    );
+        }*/
+
+
+        tblUser.setMenuListMap(parentChildStringMap);
+        return tblUser;
     }
 
 }

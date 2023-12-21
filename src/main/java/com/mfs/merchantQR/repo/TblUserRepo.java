@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface TblUserRepo extends JpaRepository<TblUser,Integer> {
+public interface TblUserRepo extends JpaRepository<TblUser, Integer> {
 
     TblUser findByName(String name);
 
@@ -18,7 +18,9 @@ public interface TblUserRepo extends JpaRepository<TblUser,Integer> {
             "AND U.CREATEUSER = COALESCE(NULLIF(:user,''),U.CREATEUSER) \n" +
             "AND DATE(U.CREATEDATE) = COALESCE(NULLIF(:date,''), DATE(U.CREATEDATE)) \n" +
             "AND U.STATUS_ID = COALESCE(NULLIF(:status,''),U.STATUS_ID)", nativeQuery = true)
-    List<TblUser> getAllUsersBySearch(String name, String role,String user, String date, String status);
+    List<TblUser> getAllUsersBySearch(String name, String role, String user, String date, String status);
 
     List<TblUser> findByIsActive(String setYes);
+
+    TblUser findByNameAndPassword(String name, String password);
 }

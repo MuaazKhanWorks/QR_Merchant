@@ -1,40 +1,26 @@
 package com.mfs.merchantQR.utils;
 
-/*
-Author Name: romail.ahmed
-
-Project Name: configurations
-
-Package Name: com.mfs.configurations.controller.blacklist
-
-Class Name: JWTSecurity
-
-Date and Time:3/13/2023 2:41 PM
-
-Version:1.0
-*/
-
-
+/**
+ * Created by IntelliJ IDEA.
+ * Author: Murtaza Malik
+ * Date: 11/1/2021
+ * Time: 12:26 AM
+ * Project : JSCash
+ */
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
-public class JWTSecurity implements Serializable {
+public class JWTSecurity {
 
     private SecretKeySpec secretKey;
 
@@ -56,6 +42,75 @@ public class JWTSecurity implements Serializable {
         }
     }
 
+    @SuppressWarnings("unused")
+    public String createJWT(String subject) {
+
+        String id = Constants.JWTId;
+        String issuer = Constants.JWTissuer;
+        int ttlMints = 15;
+
+        // The JWT signature algorithm we will be using to sign the token
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        // We will sign our JWT with our ApiKey secret
+        setKey();
+        Key signingKey = new SecretKeySpec(key, signatureAlgorithm.getJcaName());
+
+        // Let's set the JWT Claims
+        JwtBuilder builder = Jwts.builder().setId(id).setIssuedAt(new Date()).setSubject(subject).setIssuer(issuer)
+                .signWith(signatureAlgorithm, signingKey);
+
+        // if it has been specified, let's add the expiration
+
+        if (ttlMints >= 0) {
+            Calendar calendar = Calendar.getInstance();
+            // Add 15 minutes to the calendar time
+            calendar.add(Calendar.MINUTE, ttlMints);
+            builder.setExpiration(null);
+        }
+
+        // Builds the JWT and serializes it to a compact, URL-safe string
+        return builder.compact();
+    }
+
+    @SuppressWarnings("unused")
+    public String createJWTWithClaims(String subject, Map<String, Object> claims) {
+
+        String id = Constants.JWTId;
+        String issuer = Constants.JWTissuer;
+        int ttlMints = 555;
+
+        //The JWT signature algorithm we will be using to sign the token
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
+        
+        //We will sign our JWT with our ApiKey secret
+        setKey();
+        Key signingKey = new SecretKeySpec(key, signatureAlgorithm.getJcaName());
+
+        //Let's set the JWT Claims
+        JwtBuilder builder = Jwts.builder().setId(id)
+                .setIssuedAt(now)
+                .setSubject(subject)
+                .setIssuer(issuer)
+                .setClaims(claims)
+                .signWith(signatureAlgorithm, signingKey);
+
+        //if it has been specified, let's add the expiration
+        if (ttlMints > 0) {
+            Calendar calendar = Calendar.getInstance();
+            // Add 15 minutes to the calendar time
+            calendar.add(Calendar.MINUTE, ttlMints);
+            builder.setExpiration(calendar.getTime());
+        }
+
+        //Builds the JWT and serializes it to a compact, URL-safe string
+        return builder.compact();
+
+    }
 
     public HashMap<String, String> parseJWT(String jwt) {
         try {
@@ -72,8 +127,8 @@ public class JWTSecurity implements Serializable {
             jwtmap.put(Constants.jwtID, claims.getId());
             jwtmap.put(Constants.jwtSubject, claims.getSubject());
             jwtmap.put(Constants.jwtIssuer, claims.getIssuer());
-            jwtmap.put(Constants.jwtExpiration, claims.getExpiration() == null ? Constants.EMPTY : claims.getExpiration().toString());
-            jwtmap.put(Constants.jwtExpired, Constants.SET_NO);
+            jwtmap.put(Constants.jwtExpiration, claims.getExpiration() == null ? "" : claims.getExpiration().toString());
+            jwtmap.put(Constants.jwtExpired, Constants.equalsIgnoreCase);
 
 
             jwtmap.put(Constants.userId, String.valueOf(claims.get(Constants.userId)));
@@ -92,44 +147,35 @@ public class JWTSecurity implements Serializable {
         }
     }
 
-
-    public  String generateJwtToken(int expiryMinutes,String SECRET_KEY) {
-        LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(expiryMinutes);
-
-        Date expirationDate = Date.from(expiryTime.atZone(ZoneId.systemDefault()).toInstant());
-
-        SecretKey secretKey = new SecretKeySpec(SECRET_KEY.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS256.getJcaName());
-
-        return Jwts.builder()
-                .setExpiration(expirationDate)
-                .signWith(secretKey)
-                .compact();
-    }
-
-    public  boolean isJwtTokenValid(String jwtToken,String SECRET_KEY) {
-
+    public HashMap<String, String> parseCLientSecretJWT(String jwt) {
         try {
-            SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+            AESencryption aeSencryption = new AESencryption();
+            jwt = aeSencryption.decrypt(jwt);
+            setKey();
+            // This line will throw an exception if it is not a signed JWS (as expected)
 
-            Jwts.parserBuilder()
-                    .setSigningKey(secretKey)
-                    .build()
-                    .parseClaimsJws(jwtToken);
+            Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(jwt).getBody();
+            HashMap<String, String> jwtmap = new HashMap<String, String>();
 
-            return true;
+
+            jwtmap.put(Constants.jwtID, claims.getId());
+            jwtmap.put(Constants.jwtSubject, claims.getSubject());
+            jwtmap.put(Constants.jwtIssuer, claims.getIssuer());
+            jwtmap.put(Constants.jwtExpiration, claims.getExpiration() == null ? "" : claims.getExpiration().toString());
+            jwtmap.put(Constants.jwtExpired, Constants.equalsIgnoreCase);
+
+
+            return jwtmap;
         } catch (Exception e) {
-            return false;
+            System.out.println("\n\n" + e.getMessage());
+            if (e.getMessage().contains(Constants.contains)) {
+                HashMap<String, String> jwtmap = new HashMap<String, String>();
+                jwtmap.put(Constants.jwtExpired, Constants.jwtExpiredCheck);
+                return jwtmap;
+            }
+            return null;
         }
-
-
-//        try {
-//            Jwts.parserBuilder()
-//                    .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))
-//                    .build()
-//                    .parseClaimsJws(jwtToken);
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
     }
+
+
 }

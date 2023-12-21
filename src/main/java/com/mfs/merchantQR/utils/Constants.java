@@ -7,6 +7,10 @@ import java.util.HashMap;
 
 public interface Constants {
 
+    String loginEndPoint = "/login";
+    String usernamePasswordInvalid= "UserName/Password Invalid";
+    String noRolesAttached = "No roles attached to this user";
+    String jsCashUserVar = "MFS";
     String LOG_INFO = "INFO";
     String callingMethodInfo = "Calling method:: ";
     String endingMethodInfo = "Ending method:: ";
@@ -251,7 +255,7 @@ public interface Constants {
     String TBL_ROLE = "tbl_role";
     String TBL_MENU = "tbl_menu";
     String UPDATE_USER_ROLE = "/admin/updateuserrule";
-    String LOGIN = "/admin/login";
+    String LOGIN = "/login";
     String INVALID_PASSWORD = "Invalid Password";
     String equalsIgnoreCase = "N";
     String JWT_ID = "ZCONNECT";

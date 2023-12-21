@@ -27,4 +27,6 @@ public interface MerchantQrService {
 
     TblMcRequest getUserUpdateCheckerById(int mcRequestId);
 
+    TblUser loginMember(String email, String password);
+
 }
