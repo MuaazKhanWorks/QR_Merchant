@@ -156,7 +156,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
     }
 
     private TblUser updateUser(UpdateUserRequest updateUserRequest, int valueOf) {
-        TblUser tblUser = new TblUser();
+        TblUser tblUser = tblUserRepo.findById(updateUserRequest.getUserId()).orElse(null);
         tblUser.setName(updateUserRequest.getName());
         tblUser.setPassword(updateUserRequest.getPassword());
         if (updateUserRequest.getEmail() != null && !updateUserRequest.getEmail().equalsIgnoreCase("")) {
