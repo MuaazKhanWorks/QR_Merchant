@@ -182,6 +182,8 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
                 tblUserRole.setIsActive("Y");
                 tblUserRole.setCreateuser(tblUser.getCreateuser());
                 tblUserRole.setCreatedate(new Date());
+                tblUserRole.setLastupdateuser(valueOf);
+                tblUserRole.setUpdateindex(tblUserRole.getUpdateindex() != 0 ? tblUserRole.getUpdateindex() + 1 : 1);
 
                 tblUserRoleRepo.save(tblUserRole);
             }
