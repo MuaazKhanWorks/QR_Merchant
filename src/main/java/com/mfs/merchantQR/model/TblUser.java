@@ -104,7 +104,7 @@ public class TblUser implements Serializable {
 	private List<TblUserRole> tblUserRoles;
 
 	@Transient
-	private Map<String, List<TblMenu>> menuListMap;
+	private Map<Integer, List<TblMenu>> menuListMap;
 
 	@Transient
 	private String token;
@@ -120,11 +120,11 @@ public class TblUser implements Serializable {
 		this.token = token;
 	}
 
-	public Map<String, List<TblMenu>> getMenuListMap() {
+	public Map<Integer, List<TblMenu>> getMenuListMap() {
 		return menuListMap;
 	}
 
-	public void setMenuListMap(Map<String, List<TblMenu>> menuListMap) {
+	public void setMenuListMap(Map<Integer, List<TblMenu>> menuListMap) {
 		this.menuListMap = menuListMap;
 	}
 

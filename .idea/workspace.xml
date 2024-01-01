@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d350e80f-2e9f-4f55-97a9-2e193b40eb56" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/LoginPostApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/dto/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/dto/LoginResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblRoleRight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/repo/TblMenuRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/repo/TblRoleRightRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrPostApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/controller/QrPostApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/model/TblUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/repo/TblUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/repo/TblUserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/MerchantQrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/MerchantQrService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/utils/FieldsValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/utils/FieldsValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/utils/JWTSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/utils/JWTSecurity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702443109359</updated>
       <workItem from="1702443113321" duration="40957000" />
-      <workItem from="1702644089225" duration="48830000" />
+      <workItem from="1702644089225" duration="55446000" />
     </task>
     <servers />
   </component>
@@ -114,70 +102,74 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="552" y="186" key="#Assign_Data_Sources/0.0.1920.1050@0.0.1920.1050" timestamp="1702536490975" />
-    <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1703154303119">
+    <state x="552" y="186" width="816" height="768" key="#Intentions" timestamp="1703160062928">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1703154303119" />
+    <state x="552" y="186" width="816" height="768" key="#Intentions/0.0.1920.1050@0.0.1920.1050" timestamp="1703160062928" />
+    <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1704105085090">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1704105085090" />
     <state x="690" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1702465374172">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1702465374172" />
-    <state width="756" height="466" key="DebuggerActiveHint" timestamp="1703154845969">
+    <state width="1326" height="466" key="DebuggerActiveHint" timestamp="1704105109960">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="756" height="466" key="DebuggerActiveHint/0.0.1920.1050@0.0.1920.1050" timestamp="1703154845969" />
+    <state width="1326" height="466" key="DebuggerActiveHint/0.0.1920.1050@0.0.1920.1050" timestamp="1704105109960" />
     <state x="740" y="269" key="FileChooserDialogImpl" timestamp="1703072111364">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="269" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1703072111364" />
-    <state width="1877" height="319" key="GridCell.Tab.0.bottom" timestamp="1703154992624">
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1704105382706">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992624" />
-    <state width="1877" height="319" key="GridCell.Tab.0.center" timestamp="1703154992624">
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382706" />
+    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1704105382706">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992624" />
-    <state width="1877" height="319" key="GridCell.Tab.0.left" timestamp="1703154992624">
+    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382706" />
+    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1704105382706">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992624" />
-    <state width="1877" height="319" key="GridCell.Tab.0.right" timestamp="1703154992624">
+    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382706" />
+    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1704105382706">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992624" />
-    <state width="1877" height="319" key="GridCell.Tab.1.bottom" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382706" />
+    <state width="1877" height="264" key="GridCell.Tab.1.bottom" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
-    <state width="1877" height="319" key="GridCell.Tab.1.center" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.1.center" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
-    <state width="1877" height="319" key="GridCell.Tab.1.left" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.1.left" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
-    <state width="1877" height="319" key="GridCell.Tab.1.right" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.1.right" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
-    <state width="1877" height="319" key="GridCell.Tab.2.bottom" timestamp="1703154992559">
+    <state width="1877" height="264" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.2.bottom" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992559" />
-    <state width="1877" height="319" key="GridCell.Tab.2.center" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.2.center" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
-    <state width="1877" height="319" key="GridCell.Tab.2.left" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.2.left" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
-    <state width="1877" height="319" key="GridCell.Tab.2.right" timestamp="1703154992558">
+    <state width="1877" height="264" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
+    <state width="1877" height="264" key="GridCell.Tab.2.right" timestamp="1704105382633">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1703154992558" />
+    <state width="1877" height="264" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1704105382633" />
     <state x="463" y="170" key="SettingsEditor" timestamp="1702465152483">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -222,7 +214,7 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mfs/merchantQR/service/impl/MerchantQrServiceImpl.java</url>
           <line>226</line>
-          <option name="timeStamp" value="45" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

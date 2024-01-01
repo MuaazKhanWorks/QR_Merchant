@@ -240,37 +240,22 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
 
         Map<String, List<TblMenu>> parentChildStringMap = new HashMap<>();
 
-        tblUser.getTblUserRoles().stream()
-                .flatMap(p -> p.getTblRole().getTblRoleRights().stream())
-                .filter(a -> parentChildMap.keySet().contains(a.getTblMenu().getMenuId()) && a.getTblRole().getIsActive().equals(Constants.SET_YES) && a.getIsActive().equals(Constants.SET_YES))
-                .forEach(a -> {
-                    for (TblMenu tblMenu1 : parentChildMap.get(a.getTblMenu().getMenuId())) {
+//        tblUser.getTblUserRoles().stream()
+//                .flatMap(p -> p.getTblRole().getTblRoleRights().stream())
+//                .filter(a -> parentChildMap.keySet().contains(a.getTblMenu().getMenuId()) && a.getTblRole().getIsActive().equals(Constants.SET_YES) && a.getIsActive().equals(Constants.SET_YES))
+//                .forEach(a -> {
+//                    for (TblMenu tblMenu1 : parentChildMap.get(a.getTblMenu().getMenuId())) {
 //                        tblMenu1.setViewAllowed(a.getViewAllowed());
 //                        tblMenu1.setInsertAllowed(a.getInsertAllowed());
 //                        tblMenu1.setDeleteAllowed(a.getDeleteAllowed());
 //                        tblMenu1.setUpdateAllowed(a.getUpdateAllowed());
-                    }
-                    parentChildStringMap.put(a.getTblMenu().getMenuDescr(), parentChildMap.get(a.getTblMenu().getMenuId()));
-                });
-
-        /*for (Map.Entry<String, List<TblMenu>> entry : parentChildStringMap.entrySet()) {
-            List<TblMenu> tblMenuList = entry.getValue();
-            tblUser.getTblUserRoles().stream()
-                    .flatMap(p -> p.getTblRole().getTblRoleRights().stream())
-                    .forEach(a ->
-                            tblMenuList.stream()
-                                    .filter(tblMenu1 -> tblMenu1.getMenuId().equals(a.getTblMenu().getMenuId()))
-                                    .forEach(tblMenu1 -> {
-                                        tblMenu1.setViewAllowed(a.getViewAllowed());
-                                        tblMenu1.setInsertAllowed(a.getInsertAllowed());
-                                        tblMenu1.setDeleteAllowed(a.getDeleteAllowed());
-                                        tblMenu1.setUpdateAllowed(a.getUpdateAllowed());
-                                    })
-                    );
-        }*/
+//                    }
+//                    parentChildStringMap.put(a.getTblMenu().getMenuDescr(), parentChildMap.get(a.getTblMenu().getMenuId()));
+//                });
 
 
-        tblUser.setMenuListMap(parentChildStringMap);
+
+        tblUser.setMenuListMap(parentChildMap);
         return tblUser;
     }
 

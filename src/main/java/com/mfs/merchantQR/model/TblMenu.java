@@ -1,5 +1,7 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -82,9 +84,57 @@ public class TblMenu implements Serializable {
 
 	//bi-directional many-to-one association to TblRoleRight
 	@OneToMany(mappedBy="tblMenu")
+	@JsonIgnore
 	private List<TblRoleRight> tblRoleRights;
 
+	@Transient
+	private String deleteAllowed;
+
+	@Transient
+	private String insertAllowed;
+
+	@Transient
+	private String updateAllowed;
+
+	@Transient
+	private String viewAllowed;
+
+
+
+
 	public TblMenu() {
+	}
+
+	public String getDeleteAllowed() {
+		return deleteAllowed;
+	}
+
+	public void setDeleteAllowed(String deleteAllowed) {
+		this.deleteAllowed = deleteAllowed;
+	}
+
+	public String getInsertAllowed() {
+		return insertAllowed;
+	}
+
+	public void setInsertAllowed(String insertAllowed) {
+		this.insertAllowed = insertAllowed;
+	}
+
+	public String getUpdateAllowed() {
+		return updateAllowed;
+	}
+
+	public void setUpdateAllowed(String updateAllowed) {
+		this.updateAllowed = updateAllowed;
+	}
+
+	public String getViewAllowed() {
+		return viewAllowed;
+	}
+
+	public void setViewAllowed(String viewAllowed) {
+		this.viewAllowed = viewAllowed;
 	}
 
 	public static long getSerialVersionUID() {

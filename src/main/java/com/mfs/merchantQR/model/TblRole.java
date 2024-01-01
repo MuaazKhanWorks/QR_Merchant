@@ -50,7 +50,6 @@ public class TblRole implements Serializable {
 	private String roleCode;
 
 
-
 	@Column(name="ROLE_DESCR")
 	private String roleDescr;
 
@@ -67,6 +66,7 @@ public class TblRole implements Serializable {
 
 	//bi-directional many-to-one association to TblRoleRight
 	@OneToMany(mappedBy="tblRole")
+	@JsonIgnore
 	private List<TblRoleRight> tblRoleRights;
 
 	//bi-directional many-to-one association to TblUserRole
