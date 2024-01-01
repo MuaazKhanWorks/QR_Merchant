@@ -92,6 +92,7 @@ public class TblMenu implements Serializable {
 
 	@Transient
 	private String insertAllowed;
+	
 
 	@Transient
 	private String updateAllowed;
