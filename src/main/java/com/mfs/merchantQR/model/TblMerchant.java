@@ -37,6 +37,9 @@ public class TblMerchant implements Serializable {
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
+	@Column(name="DOWNLOAD_STATUS")
+	private String downlaodStatus;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="LASTUPDATEDATE")
 	private Date lastupdatedate;
@@ -66,6 +69,15 @@ public class TblMerchant implements Serializable {
 	private LkpStatus lkpStatus;
 
 	public TblMerchant() {
+	}
+
+
+	public String getDownlaodStatus() {
+		return downlaodStatus;
+	}
+
+	public void setDownlaodStatus(String downlaodStatus) {
+		this.downlaodStatus = downlaodStatus;
 	}
 
 	public int getMerchantId() {

@@ -104,10 +104,10 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
 
     public Response saveUserRequest(TokenData loggedUserDetail, TblUserRequest tblUserRequest) throws JsonProcessingException, ParseException {
         Response response = new Response();
-        response = commonService.makerChecker(Constants.TBL_USER, Constants.CREATE_USER_FORM_NAME, Constants.REQUEST_TYPE_SAVE, Constants.REQUEST_TYPE_SAVE, String.valueOf(loggedUserDetail.getUserId()), Constants.EMPTY, BigDecimal.valueOf(loggedUserDetail.getUserId()));
+        response = commonService.makerChecker(Constants.TBL_USER, Constants.CREATE_USER_FORM_NAME, Constants.REQUEST_TYPE_SAVE, Constants.REQUEST_TYPE_SAVE, String.valueOf(1), Constants.EMPTY, BigDecimal.valueOf(1));
         if (response.getResponseCode() != null && response.getResponseCode().equals(Constants.MAKER_CHECKER_NOT_APPLICABLE_CODE)) {
             tblUserRequest.setIsActive(Constants.SET_YES);
-            TblUser tblUser = saveUser(tblUserRequest, (int) loggedUserDetail.getUserId());
+            TblUser tblUser = saveUser(tblUserRequest, (int) 1);
             if (tblUser != null) {
                 setResponse(response, Constants.SUCCESS, tblUser);
             } else {
@@ -238,25 +238,20 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
                         Collectors.toList()
                 ));
 
-        Map<String, List<TblMenu>> parentChildStringMap = new HashMap<>();
-
-//        tblUser.getTblUserRoles().stream()
-//                .flatMap(p -> p.getTblRole().getTblRoleRights().stream())
-//                .filter(a -> parentChildMap.keySet().contains(a.getTblMenu().getMenuId()) && a.getTblRole().getIsActive().equals(Constants.SET_YES) && a.getIsActive().equals(Constants.SET_YES))
-//                .forEach(a -> {
-//                    for (TblMenu tblMenu1 : parentChildMap.get(a.getTblMenu().getMenuId())) {
-//                        tblMenu1.setViewAllowed(a.getViewAllowed());
-//                        tblMenu1.setInsertAllowed(a.getInsertAllowed());
-//                        tblMenu1.setDeleteAllowed(a.getDeleteAllowed());
-//                        tblMenu1.setUpdateAllowed(a.getUpdateAllowed());
-//                    }
-//                    parentChildStringMap.put(a.getTblMenu().getMenuDescr(), parentChildMap.get(a.getTblMenu().getMenuId()));
-//                });
-
-
-
         tblUser.setMenuListMap(parentChildMap);
         return tblUser;
     }
 
+    @Override
+    public TblMerchant updateDownloadStatus(TokenData loggedUserDetail, UpdateDownloadStatusRequest updateDownloadStatusRequest) {
+        TblMerchant tblMerchant= new TblMerchant();
+
+        tblMerchant.setDownlaodStatus(updateDownloadStatusRequest.getDownloadStatus());
+        tblMerchant.setCreatedate(new Date());
+        tblMerchant.setCreateuser((int)loggedUserDetail.getUserId());
+        tblMerchant.setUpdateindex(tblMerchant.getUpdateindex() == 0 ? tblMerchant.getUpdateindex() + 1 : 1);
+        tblMerchant.setLastupdateuser((int)loggedUserDetail.getUserId());
+        tblMerchant.setLastupdatedate(new Date());
+        return tblMerchant = tblMerchantRepo.save(tblMerchant);
+    }
 }

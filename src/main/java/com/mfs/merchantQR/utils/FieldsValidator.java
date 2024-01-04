@@ -92,5 +92,18 @@ public class FieldsValidator {
         return fieldError;
 
     }
+
+    public static List<Error> updateDownloadStatusValidator(UpdateDownloadStatusRequest updateDownloadStatusRequest) {
+        List<Error> fieldError = new ArrayList<>();
+        if (updateDownloadStatusRequest.getDownloadStatus()==null) {
+            Error error = new Error();
+            error.setErrorCode(Constants.fieldValidationCode);
+            error.setErrorDescr(Constants.GET_USERS);
+            fieldError.add(error);
+        }
+        return fieldError;
+
+
+    }
 }
 

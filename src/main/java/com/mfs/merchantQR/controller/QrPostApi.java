@@ -169,8 +169,9 @@ public class QrPostApi extends AbstarctApi {
 //        }
 //    }
 
+
     @PostMapping(value = Constants.SAVE_USER, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> updatesubscription(@RequestBody String data, HttpServletRequest request) throws JsonProcessingException, ParseException {
+    public ResponseEntity<Response> createuser(@RequestBody String data, HttpServletRequest request) throws JsonProcessingException, ParseException {
         String methodName = getCurrentMethodName();
         ObjectMapper objectMapper = new ObjectMapper();
         String moduleId = env.getProperty(Constants.moduleIdKey);
@@ -180,7 +181,7 @@ public class QrPostApi extends AbstarctApi {
         TblUser saveUser = new TblUser();
         logs(Constants.SAVE_USER, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
-        if (loggedUserDetail != null) {
+//        if (loggedUserDetail != null) {
             logs(Constants.SAVE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());
             TblUserRequest tblModuleRequest = objectMapper.readValue(convertObjecttoJson(jsonRequest.getPayLoad()), TblUserRequest.class);
             List<Error> validations = FieldsValidator.saveUserValidator(tblModuleRequest);
@@ -202,14 +203,14 @@ public class QrPostApi extends AbstarctApi {
                 response.setMessage(Constants.validationFailed);
                 return convertStringToResponseObject(response, response.getResponseCode());
             }
-        } else {
-            response.setPayLoad(null);
-            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
-            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
-            response.setMessage(Constants.sessionExpired);
-            logs(Constants.SAVE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
-            return convertStringToResponseObject(response, response.getResponseCode());
-        }
+//        } else {
+//            response.setPayLoad(null);
+//            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
+//            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
+//            response.setMessage(Constants.sessionExpired);
+//            logs(Constants.SAVE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
+//            return convertStringToResponseObject(response, response.getResponseCode());
+//        }
         logs(Constants.SAVE_USER, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), jsonRequest, Constants.endingMethodInfo, response);
         return convertStringToResponseObject(response, response.getResponseCode());
     }
@@ -224,7 +225,7 @@ public class QrPostApi extends AbstarctApi {
         Response response = new Response();
         logs(Constants.GET_ALL_USERS, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
-//        if (loggedUserDetail != null) {
+        if (loggedUserDetail != null) {
             logs(Constants.GET_ALL_USERS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());
             GetAllUsersRequest getAllUsersRequest = objectMapper.readValue(convertObjecttoJson(jsonRequest.getPayLoad()), GetAllUsersRequest.class);
             List<Error> validations = FieldsValidator.getAllUserValidator(getAllUsersRequest);
@@ -249,19 +250,20 @@ public class QrPostApi extends AbstarctApi {
                 response.setMessage(Constants.validationFailed);
                 return convertStringToResponseObject(response, response.getResponseCode());
             }
-//        } else {
-//            response.setPayLoad(null);
-//            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
-//            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
-//            response.setMessage(Constants.sessionExpired);
-//            logs(Constants.GET_ALL_USERS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
-//            return convertStringToResponseObject(response, response.getResponseCode());
-//        }
+        } else {
+            response.setPayLoad(null);
+            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
+            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
+            response.setMessage(Constants.sessionExpired);
+            logs(Constants.GET_ALL_USERS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
+            return convertStringToResponseObject(response, response.getResponseCode());
+        }
         logs(Constants.GET_ALL_USERS, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), jsonRequest, Constants.endingMethodInfo, response);
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 
-    @PostMapping(value = Constants.GET_ALL_MERCHANT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+
+      @PostMapping(value = Constants.GET_ALL_MERCHANT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> getallmerchant(@RequestBody String data, HttpServletRequest request) throws JsonProcessingException, ParseException {
         String methodName = getCurrentMethodName();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -308,6 +310,55 @@ public class QrPostApi extends AbstarctApi {
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 
+    @PostMapping(value = Constants.UPDATE_DOWNLAOD_STATUS, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> updateDownloadStatus(@RequestBody String data, HttpServletRequest request) throws JsonProcessingException, ParseException {
+        String methodName = getCurrentMethodName();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String moduleId = env.getProperty(Constants.moduleIdKey);
+        Request jsonRequest = convertStringToRequestObject(data);
+        TblResponseMessage tblResponseMessage = null;
+        Response response = new Response();
+        TblUser saveUser = new TblUser();
+        logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
+        TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
+        if (loggedUserDetail != null) {
+        logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());
+        UpdateDownloadStatusRequest updateDownloadStatusRequest = objectMapper.readValue(convertObjecttoJson(jsonRequest.getPayLoad()), UpdateDownloadStatusRequest.class);
+        List<Error> validations = FieldsValidator.updateDownloadStatusValidator(updateDownloadStatusRequest);
+        if (validations.size() <= 0) {
+                TblMerchant tblMerchant  = merchantQrService.updateDownloadStatus( loggedUserDetail,updateDownloadStatusRequest);
+                if(tblMerchant!=null){
+                    tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
+                    response.setPayLoad(tblMerchant);
+                    response.setResponseCode(tblResponseMessage != null ? moduleId+tblResponseMessage.getResponseMessageCode() : moduleId+Constants.generalProcessingCode);
+                    response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+                    logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), jsonRequest, Constants.endingMethod, response);
+                } else {
+                    tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotSaved);
+                    response.setPayLoad(tblMerchant);
+                    response.setResponseCode(tblResponseMessage != null ? moduleId+tblResponseMessage.getResponseMessageCode() : moduleId+Constants.generalProcessingCode);
+                    response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+                    logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), jsonRequest, Constants.endingMethod, response);
+                }
+        } else {
+            response.setResponseCode(Constants.fieldValidationCode);
+            response.setErrors(validations);
+            response.setMessage(Constants.validationFailed);
+            return convertStringToResponseObject(response, response.getResponseCode());
+        }
+        } else {
+            response.setPayLoad(null);
+            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.sessionExpired);
+            response.setResponseCode(moduleId + tblResponseMessage.getResponseMessageCode());
+            response.setMessage(Constants.sessionExpired);
+            logs(Constants.SAVE_USER, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo + methodName, new Response());
+            return convertStringToResponseObject(response, response.getResponseCode());
+        }
+        logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), jsonRequest, Constants.endingMethodInfo, response);
+        return convertStringToResponseObject(response, response.getResponseCode());
+    }
+
+
 //    @RequestMapping(value = Constants.QR_CODE, method = RequestMethod.GET)
 //    public ResponseEntity<byte[]> generateBarcodeImage(@PathVariable Integer merchantId) {
 //        TblMerchant tblMerchant = tblMerchantRepo.findById(merchantId).orElse(null);
@@ -329,6 +380,7 @@ public class QrPostApi extends AbstarctApi {
 
     @RequestMapping(value = Constants.QR_CODE, method = RequestMethod.GET)
     public ResponseEntity<String> generateBarcodeImage(@PathVariable Integer merchantId) {
+
         TblMerchant tblMerchant = tblMerchantRepo.findById(merchantId).orElse(null);
 
         if (tblMerchant != null) {

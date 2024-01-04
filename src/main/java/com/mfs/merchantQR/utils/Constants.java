@@ -1356,4 +1356,5 @@ public interface Constants {
     String CREATE_USER_FORM_NAME = "CREATE USER";
     String UPDATE_USER_FORM_NAME = "UPDATE USER";
     String GET_USERS="Please Enter Data";
+    String UPDATE_DOWNLAOD_STATUS = "/updateDownloadStatus";
 }

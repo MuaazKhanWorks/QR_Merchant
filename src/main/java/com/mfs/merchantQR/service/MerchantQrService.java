@@ -29,4 +29,5 @@ public interface MerchantQrService {
 
     TblUser loginMember(String email, String password);
 
+    TblMerchant updateDownloadStatus(TokenData loggedUserDetail, UpdateDownloadStatusRequest updateDownloadStatusRequest);
 }
