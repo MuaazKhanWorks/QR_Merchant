@@ -176,7 +176,7 @@ public class QrPostApi extends AbstarctApi {
         ObjectMapper objectMapper = new ObjectMapper();
         String moduleId = env.getProperty(Constants.moduleIdKey);
         Request jsonRequest = convertStringToRequestObject(data);
-        TblResponseMessage tblResponseMessage = null;
+        TblResponseMessage tblResponseMessage;
         Response response = new Response();
         TblUser saveUser = new TblUser();
         logs(Constants.SAVE_USER, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
@@ -221,7 +221,7 @@ public class QrPostApi extends AbstarctApi {
         ObjectMapper objectMapper = new ObjectMapper();
         String moduleId = env.getProperty(Constants.moduleIdKey);
         Request jsonRequest = convertStringToRequestObject(data);
-        TblResponseMessage tblResponseMessage = null;
+        TblResponseMessage tblResponseMessage;
         Response response = new Response();
         logs(Constants.GET_ALL_USERS, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
@@ -316,7 +316,7 @@ public class QrPostApi extends AbstarctApi {
         ObjectMapper objectMapper = new ObjectMapper();
         String moduleId = env.getProperty(Constants.moduleIdKey);
         Request jsonRequest = convertStringToRequestObject(data);
-        TblResponseMessage tblResponseMessage = null;
+        TblResponseMessage tblResponseMessage;
         Response response = new Response();
         logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
