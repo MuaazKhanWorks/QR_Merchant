@@ -249,7 +249,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         tblMerchant.setDownlaodStatus(updateDownloadStatusRequest.getDownloadStatus());
         tblMerchant.setCreatedate(new Date());
         tblMerchant.setCreateuser((int)loggedUserDetail.getUserId());
-        tblMerchant.setUpdateindex(tblMerchant.getUpdateindex() == 0 ? tblMerchant.getUpdateindex() + 1 : 1);
+        tblMerchant.setUpdateindex(tblMerchant.getUpdateindex() == 0 ?  1 : tblMerchant.getUpdateindex() +1);
         tblMerchant.setLastupdateuser((int)loggedUserDetail.getUserId());
         tblMerchant.setLastupdatedate(new Date());
         return tblMerchant = tblMerchantRepo.save(tblMerchant);
