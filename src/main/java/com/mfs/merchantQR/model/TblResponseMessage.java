@@ -28,7 +28,7 @@ public class TblResponseMessage implements Serializable {
 
 
 	@Column(name="CREATEUSER")
-	private int createuser;
+	private Integer createuser;
 
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -91,7 +91,7 @@ public class TblResponseMessage implements Serializable {
 		return createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(Integer createuser) {
 		this.createuser = createuser;
 	}
 
