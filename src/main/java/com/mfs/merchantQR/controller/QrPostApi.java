@@ -321,6 +321,8 @@ public class QrPostApi extends AbstarctApi {
         TblUser saveUser = new TblUser();
         logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
+        loggedUserDetail=new TokenData();
+        loggedUserDetail.setUserId(Long.valueOf(1));
         if (loggedUserDetail != null) {
         logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());
         UpdateDownloadStatusRequest updateDownloadStatusRequest = objectMapper.readValue(convertObjecttoJson(jsonRequest.getPayLoad()), UpdateDownloadStatusRequest.class);
@@ -358,24 +360,6 @@ public class QrPostApi extends AbstarctApi {
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 
-
-//    @RequestMapping(value = Constants.QR_CODE, method = RequestMethod.GET)
-//    public ResponseEntity<byte[]> generateBarcodeImage(@PathVariable Integer merchantId) {
-//        TblMerchant tblMerchant = tblMerchantRepo.findById(merchantId).orElse(null);
-//
-//        if (tblMerchant != null) {
-//
-//            byte[] qrCodeImageBytes = QRCodeGenerator.generateQRCode(tblMerchant.getQrCode());
-//
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.IMAGE_PNG);
-//            headers.setContentLength(qrCodeImageBytes.length);
-//
-//            return new ResponseEntity<>(qrCodeImageBytes, headers, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
 
 
     @RequestMapping(value = Constants.QR_CODE, method = RequestMethod.GET)

@@ -244,7 +244,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
 
     @Override
     public TblMerchant updateDownloadStatus(TokenData loggedUserDetail, UpdateDownloadStatusRequest updateDownloadStatusRequest) {
-        TblMerchant tblMerchant= new TblMerchant();
+        TblMerchant tblMerchant= tblMerchantRepo.findById(updateDownloadStatusRequest.getMerchantId()).orElse(null);
 
         tblMerchant.setDownlaodStatus(updateDownloadStatusRequest.getDownloadStatus());
         tblMerchant.setCreatedate(new Date());

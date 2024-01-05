@@ -8,7 +8,16 @@ package com.mfs.merchantQR.dto;
 
 public class UpdateDownloadStatusRequest {
 
+    private Integer merchantId;
     private String downloadStatus;
+
+    public Integer getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(Integer merchantId) {
+        this.merchantId = merchantId;
+    }
 
     public String getDownloadStatus() {
         return downloadStatus;
