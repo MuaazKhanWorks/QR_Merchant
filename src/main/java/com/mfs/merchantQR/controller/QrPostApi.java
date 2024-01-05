@@ -318,11 +318,8 @@ public class QrPostApi extends AbstarctApi {
         Request jsonRequest = convertStringToRequestObject(data);
         TblResponseMessage tblResponseMessage = null;
         Response response = new Response();
-        TblUser saveUser = new TblUser();
         logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.LOG_INFO, getClass().getSimpleName(), methodName, getClass().getPackageName(), jsonRequest, Constants.callingMethodInfo, response);
         TokenData loggedUserDetail = getLoggedUserDataFromHeaderToken(request.getHeader(Constants.AUTHORIZATION));
-        loggedUserDetail=new TokenData();
-        loggedUserDetail.setUserId(Long.valueOf(1));
         if (loggedUserDetail != null) {
         logs(Constants.UPDATE_DOWNLAOD_STATUS, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo + methodName, new Response());
         UpdateDownloadStatusRequest updateDownloadStatusRequest = objectMapper.readValue(convertObjecttoJson(jsonRequest.getPayLoad()), UpdateDownloadStatusRequest.class);
