@@ -173,7 +173,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
         tblUser.setStatusId(lkpStatus.getStatusId());
         tblUser.setLastupdatedate(new Date());
         tblUser.setLastupdateuser(valueOf);
-        tblUser.setUpdateindex(tblUser.getUpdateindex() != 0 ? tblUser.getUpdateindex() + 1 : 1);
+        tblUser.setUpdateindex(tblUser.getUpdateindex() != 0 ?  1 : tblUser.getUpdateindex() + 1);
         tblUser = tblUserRepo.saveAndFlush(tblUser);
         if (tblUser != null && tblUser.getUserId() > 0) {
             if (Long.valueOf(updateUserRequest.getRoleId()) > 0) {
@@ -187,7 +187,7 @@ public class MerchantQrServiceImpl extends AbstarctApi implements MerchantQrServ
                     tblUserRole.setCreateuser(tblUser.getCreateuser());
                     tblUserRole.setCreatedate(new Date());
                     tblUserRole.setLastupdateuser(valueOf);
-                    tblUserRole.setUpdateindex(tblUserRole.getUpdateindex() == 0 ? tblUserRole.getUpdateindex() + 1 : 1);
+                    tblUserRole.setUpdateindex(tblUserRole.getUpdateindex() == 0 ?  1 : tblUserRole.getUpdateindex() + 1);
 
                     tblUserRoleRepo.save(tblUserRole);
                 }
