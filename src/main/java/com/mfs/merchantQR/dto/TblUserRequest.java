@@ -6,15 +6,6 @@ Date and Time:12/14/2023 12:26 PM
 Version:1.0*/
 package com.mfs.merchantQR.dto;
 
-import com.mfs.merchantQR.model.TblUserRole;
-
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
-import java.util.List;
-
 public class TblUserRequest {
 
     private String email;

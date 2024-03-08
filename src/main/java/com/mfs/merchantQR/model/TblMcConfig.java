@@ -2,101 +2,77 @@ package com.mfs.merchantQR.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the tbl_mc_config database table.
+ * The persistent class for the TBL_MC_CONFIG database table.
  * 
  */
 @Entity
-@Table(name="tbl_mc_config")
+@Table(name="TBL_MC_CONFIG")
 @NamedQuery(name="TblMcConfig.findAll", query="SELECT t FROM TblMcConfig t")
 public class TblMcConfig implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_MC_CONFIG_MCCONFIGID_GENERATOR", sequenceName="TBL_MC_CONFIG_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_MC_CONFIG_MCCONFIGID_GENERATOR")
 	@Column(name="MC_CONFIG_ID")
-	private int mcConfigId;
+	private long mcConfigId;
 
 	@Column(name="CONFIG_NAME")
 	private String configName;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-	@Column(name="CREATEUSER")
-	private int createuser;
-
+	private BigDecimal createuser;
 
 	@Column(name="EDIT_DETAIL_URL")
 	private String editDetailUrl;
 
-
 	@Column(name="FORM_NAME")
 	private String formName;
-
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
-
-
-	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
-
+	private BigDecimal lastupdateuser;
 
 	@Column(name="REQUEST_TYPE")
 	private String requestType;
 
-
-
 	@Column(name="TABLE_NAME")
 	private String tableName;
 
-
-	@Column(name="UPDATEINDEX")
-	private int updateindex;
-
+	private BigDecimal updateindex;
 
 	@Column(name="VIEW_DETAIL_URL")
 	private String viewDetailUrl;
-
 
 	//bi-directional many-to-one association to TblMcConfigDetail
 	@OneToMany(mappedBy="tblMcConfig")
 	private List<TblMcConfigDetail> tblMcConfigDetails;
 
-	//bi-directional many-to-one association to TblMcRequest
-	@OneToMany(mappedBy="tblMcConfig")
-	private List<TblMcRequest> tblMcRequests;
-
 	public TblMcConfig() {
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public long getMcConfigId() {
+		return this.mcConfigId;
 	}
 
-	public int getMcConfigId() {
-		return mcConfigId;
-	}
-
-	public void setMcConfigId(int mcConfigId) {
+	public void setMcConfigId(long mcConfigId) {
 		this.mcConfigId = mcConfigId;
 	}
 
 	public String getConfigName() {
-		return configName;
+		return this.configName;
 	}
 
 	public void setConfigName(String configName) {
@@ -104,23 +80,23 @@ public class TblMcConfig implements Serializable {
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getEditDetailUrl() {
-		return editDetailUrl;
+		return this.editDetailUrl;
 	}
 
 	public void setEditDetailUrl(String editDetailUrl) {
@@ -128,7 +104,7 @@ public class TblMcConfig implements Serializable {
 	}
 
 	public String getFormName() {
-		return formName;
+		return this.formName;
 	}
 
 	public void setFormName(String formName) {
@@ -136,7 +112,7 @@ public class TblMcConfig implements Serializable {
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -144,23 +120,23 @@ public class TblMcConfig implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
 	public String getRequestType() {
-		return requestType;
+		return this.requestType;
 	}
 
 	public void setRequestType(String requestType) {
@@ -168,23 +144,23 @@ public class TblMcConfig implements Serializable {
 	}
 
 	public String getTableName() {
-		return tableName;
+		return this.tableName;
 	}
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 
 	public String getViewDetailUrl() {
-		return viewDetailUrl;
+		return this.viewDetailUrl;
 	}
 
 	public void setViewDetailUrl(String viewDetailUrl) {
@@ -211,28 +187,6 @@ public class TblMcConfig implements Serializable {
 		tblMcConfigDetail.setTblMcConfig(null);
 
 		return tblMcConfigDetail;
-	}
-
-	public List<TblMcRequest> getTblMcRequests() {
-		return this.tblMcRequests;
-	}
-
-	public void setTblMcRequests(List<TblMcRequest> tblMcRequests) {
-		this.tblMcRequests = tblMcRequests;
-	}
-
-	public TblMcRequest addTblMcRequest(TblMcRequest tblMcRequest) {
-		getTblMcRequests().add(tblMcRequest);
-		tblMcRequest.setTblMcConfig(this);
-
-		return tblMcRequest;
-	}
-
-	public TblMcRequest removeTblMcRequest(TblMcRequest tblMcRequest) {
-		getTblMcRequests().remove(tblMcRequest);
-		tblMcRequest.setTblMcConfig(null);
-
-		return tblMcRequest;
 	}
 
 }

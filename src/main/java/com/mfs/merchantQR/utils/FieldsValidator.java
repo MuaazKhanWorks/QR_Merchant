@@ -58,9 +58,9 @@ public class FieldsValidator {
         return fieldError;
     }
 
-    public static List<Error> getAllMerchantValidator(GetAllMerchantRequest getAllMerchantRequest) {
+    public static List<Error> getAllMerchantValidator(GetAllMerchantFromMicrobank getAllMerchantRequest) {
         List<Error> fieldError = new ArrayList<>();
-        if (getAllMerchantRequest.getMerchantName()==null||getAllMerchantRequest.getMerchantAccountNo()==null||getAllMerchantRequest.getMerchantCreationDate()==null||getAllMerchantRequest.getCreatedBy()==null||getAllMerchantRequest.getStatus()==null) {
+        if (getAllMerchantRequest.getBusinessName()==null||getAllMerchantRequest.getMobileNo()==null) {
             Error error = new Error();
             error.setErrorCode(Constants.fieldValidationCode);
             error.setErrorDescr(Constants.GET_USERS);
@@ -104,6 +104,17 @@ public class FieldsValidator {
         return fieldError;
 
 
+    }
+
+    public static List<Error> qrImageValidator(String mobileNumber) {
+        List<Error> fieldError = new ArrayList<>();
+        if (mobileNumber==null || mobileNumber=="") {
+            Error error = new Error();
+            error.setErrorCode(Constants.fieldValidationCode);
+            error.setErrorDescr(Constants.GET_USERS);
+            fieldError.add(error);
+        }
+        return fieldError;
     }
 }
 

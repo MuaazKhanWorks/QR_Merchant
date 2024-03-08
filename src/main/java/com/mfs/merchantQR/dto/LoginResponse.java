@@ -1,10 +1,7 @@
 package com.mfs.merchantQR.dto;
 
 
-
 import com.mfs.merchantQR.model.TblUser;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

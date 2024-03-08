@@ -4,170 +4,96 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the tbl_menu database table.
+ * The persistent class for the TBL_MENU database table.
  * 
  */
 @Entity
-@Table(name="tbl_menu")
+@Table(name="TBL_MENU")
 @NamedQuery(name="TblMenu.findAll", query="SELECT t FROM TblMenu t")
 public class TblMenu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_MENU_MENUID_GENERATOR", sequenceName="TBL_MENU_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_MENU_MENUID_GENERATOR")
 	@Column(name="MENU_ID")
-	private int menuId;
+	private long menuId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
+	private BigDecimal createuser;
 
-	@Column(name="CREATEUSER")
-	private int createuser;
-
-
-	@Column(name="ICON")
 	private String icon;
-
-
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
-
-	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
-
-
+	private BigDecimal lastupdateuser;
 
 	@Column(name="MENU_CODE")
 	private String menuCode;
 
-
 	@Column(name="MENU_DESCR")
 	private String menuDescr;
-
 
 	@Column(name="MENU_PATH")
 	private String menuPath;
 
-
-
 	@Column(name="MENU_TYPE")
 	private String menuType;
 
-
-
 	@Column(name="PARENT_MENU")
-	private int parentMenu;
-
-
+	private BigDecimal parentMenu;
 
 	@Column(name="SORT_SEQ")
 	private String sortSeq;
 
-
-
-	@Column(name="UPDATEINDEX")
-	private int updateindex;
-
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblRoleRight
 	@OneToMany(mappedBy="tblMenu")
 	@JsonIgnore
 	private List<TblRoleRight> tblRoleRights;
 
-	@Transient
-	private String deleteAllowed;
-
-	@Transient
-	private String insertAllowed;
-
-
-	@Transient
-	private String updateAllowed;
-
-	@Transient
-	private String viewAllowed;
-
-
-
-
 	public TblMenu() {
 	}
 
-	public String getDeleteAllowed() {
-		return deleteAllowed;
+	public long getMenuId() {
+		return this.menuId;
 	}
 
-	public void setDeleteAllowed(String deleteAllowed) {
-		this.deleteAllowed = deleteAllowed;
-	}
-
-	public String getInsertAllowed() {
-		return insertAllowed;
-	}
-
-	public void setInsertAllowed(String insertAllowed) {
-		this.insertAllowed = insertAllowed;
-	}
-
-	public String getUpdateAllowed() {
-		return updateAllowed;
-	}
-
-	public void setUpdateAllowed(String updateAllowed) {
-		this.updateAllowed = updateAllowed;
-	}
-
-	public String getViewAllowed() {
-		return viewAllowed;
-	}
-
-	public void setViewAllowed(String viewAllowed) {
-		this.viewAllowed = viewAllowed;
-	}
-
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
-
-	public int getMenuId() {
-		return menuId;
-	}
-
-	public void setMenuId(int menuId) {
+	public void setMenuId(long menuId) {
 		this.menuId = menuId;
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getIcon() {
-		return icon;
+		return this.icon;
 	}
 
 	public void setIcon(String icon) {
@@ -175,7 +101,7 @@ public class TblMenu implements Serializable {
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -183,23 +109,23 @@ public class TblMenu implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
 	public String getMenuCode() {
-		return menuCode;
+		return this.menuCode;
 	}
 
 	public void setMenuCode(String menuCode) {
@@ -207,7 +133,7 @@ public class TblMenu implements Serializable {
 	}
 
 	public String getMenuDescr() {
-		return menuDescr;
+		return this.menuDescr;
 	}
 
 	public void setMenuDescr(String menuDescr) {
@@ -215,7 +141,7 @@ public class TblMenu implements Serializable {
 	}
 
 	public String getMenuPath() {
-		return menuPath;
+		return this.menuPath;
 	}
 
 	public void setMenuPath(String menuPath) {
@@ -223,34 +149,34 @@ public class TblMenu implements Serializable {
 	}
 
 	public String getMenuType() {
-		return menuType;
+		return this.menuType;
 	}
 
 	public void setMenuType(String menuType) {
 		this.menuType = menuType;
 	}
 
-	public int getParentMenu() {
-		return parentMenu;
+	public BigDecimal getParentMenu() {
+		return this.parentMenu;
 	}
 
-	public void setParentMenu(int parentMenu) {
+	public void setParentMenu(BigDecimal parentMenu) {
 		this.parentMenu = parentMenu;
 	}
 
 	public String getSortSeq() {
-		return sortSeq;
+		return this.sortSeq;
 	}
 
 	public void setSortSeq(String sortSeq) {
 		this.sortSeq = sortSeq;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 

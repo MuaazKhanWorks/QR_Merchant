@@ -2,77 +2,57 @@ package com.mfs.merchantQR.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
 /**
- * The persistent class for the tbl_role_rights database table.
+ * The persistent class for the TBL_ROLE_RIGHTS database table.
  * 
  */
 @Entity
-@Table(name="tbl_role_rights")
+@Table(name="TBL_ROLE_RIGHTS")
 @NamedQuery(name="TblRoleRight.findAll", query="SELECT t FROM TblRoleRight t")
 public class TblRoleRight implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_ROLE_RIGHTS_ROLERIGHTSID_GENERATOR", sequenceName="TBL_ROLE_RIGHTS_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_ROLE_RIGHTS_ROLERIGHTSID_GENERATOR")
 	@Column(name="ROLE_RIGHTS_ID")
-	private int roleRightsId;
+	private long roleRightsId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-
-	@Column(name="CREATEUSER")
-	private int createuser;
-
-
-
+	private BigDecimal createuser;
 
 	@Column(name="DELETE_ALLOWED")
 	private String deleteAllowed;
 
-
 	@Column(name="INSERT_ALLOWED")
 	private String insertAllowed;
-
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
-
-
-	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
-
-
-
-
-
-	@Column(name="STATUS_ID")
-	private int statusId;
-
+	private BigDecimal lastupdateuser;
 
 	@Column(name="UPDATE_ALLOWED")
 	private String updateAllowed;
 
-
-
-	@Column(name="UPDATEINDEX")
-	private int updateindex;
-
+	private BigDecimal updateindex;
 
 	@Column(name="VIEW_ALLOWED")
 	private String viewAllowed;
 
-
+	//bi-directional many-to-one association to LkpStatus
+	@ManyToOne
+	@JoinColumn(name="STATUS_ID")
+	private LkpStatus lkpStatus;
 
 	//bi-directional many-to-one association to TblMenu
 	@ManyToOne
@@ -87,36 +67,32 @@ public class TblRoleRight implements Serializable {
 	public TblRoleRight() {
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public long getRoleRightsId() {
+		return this.roleRightsId;
 	}
 
-	public int getRoleRightsId() {
-		return roleRightsId;
-	}
-
-	public void setRoleRightsId(int roleRightsId) {
+	public void setRoleRightsId(long roleRightsId) {
 		this.roleRightsId = roleRightsId;
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getDeleteAllowed() {
-		return deleteAllowed;
+		return this.deleteAllowed;
 	}
 
 	public void setDeleteAllowed(String deleteAllowed) {
@@ -124,7 +100,7 @@ public class TblRoleRight implements Serializable {
 	}
 
 	public String getInsertAllowed() {
-		return insertAllowed;
+		return this.insertAllowed;
 	}
 
 	public void setInsertAllowed(String insertAllowed) {
@@ -132,7 +108,7 @@ public class TblRoleRight implements Serializable {
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -140,51 +116,51 @@ public class TblRoleRight implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
-	public int getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
-
 	public String getUpdateAllowed() {
-		return updateAllowed;
+		return this.updateAllowed;
 	}
 
 	public void setUpdateAllowed(String updateAllowed) {
 		this.updateAllowed = updateAllowed;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 
 	public String getViewAllowed() {
-		return viewAllowed;
+		return this.viewAllowed;
 	}
 
 	public void setViewAllowed(String viewAllowed) {
 		this.viewAllowed = viewAllowed;
+	}
+
+	public LkpStatus getLkpStatus() {
+		return this.lkpStatus;
+	}
+
+	public void setLkpStatus(LkpStatus lkpStatus) {
+		this.lkpStatus = lkpStatus;
 	}
 
 	public TblMenu getTblMenu() {

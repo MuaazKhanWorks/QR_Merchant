@@ -37,14 +37,14 @@ public class CommonServiceImpl implements CommonService {
     @Autowired
     private WorkflowService workflowService;
 
-    @Autowired
-    private TblMcRequestRepo tblMcRequestRepo;
+//    @Autowired
+//    private TblMcRequestRepo tblMcRequestRepo;
 
     @Autowired
     private LkpStatusRepo lkpStatusRepo;
 
-    @Value("${logsurl}")
-    private String url;
+//    @Value("${logsurl}")
+//    private String url;
 
     @Value("${servicename}")
     private String serviceName;
@@ -57,7 +57,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public TblUser findUserById(Integer userId) {
-        return tblUserRepo.findById(userId).orElse(null);
+        return tblUserRepo.findById(Long.valueOf(userId)).orElse(null);
     }
 
 //    @Override
@@ -69,11 +69,13 @@ public class CommonServiceImpl implements CommonService {
     public Response makerChecker(String tableName, String formName, String requestType, String updateType, String refId, String updateJson, BigDecimal userId) throws JsonProcessingException {
         Response response = new Response();
         ObjectMapper objectMapper = new ObjectMapper();
-        ProcedureResponse checkMcApplicability = workflowService.checkMcApplicability(tableName, formName, requestType);
+//        ProcedureResponse checkMcApplicability = workflowService.checkMcApplicability(tableName, formName, requestType);
+        ProcedureResponse checkMcApplicability =new ProcedureResponse();
         if (checkMcApplicability != null) {
             ProcedureResponse procedureResponse = objectMapper.readValue(convertObjecttoJson(checkMcApplicability), ProcedureResponse.class);
             if (procedureResponse != null && procedureResponse.getMcApplicability() > 0) {
-                McResponse mcResponse = workflowService.parkRequestToChecker(formName, "", tableName, requestType, updateType, refId, updateJson, userId);
+//                McResponse mcResponse = workflowService.parkRequestToChecker(formName, "", tableName, requestType, updateType, refId, updateJson, userId);
+                McResponse mcResponse =new McResponse();
                 if (mcResponse != null) {
                     if (mcResponse.getStatus() == 1) {
                         setResponse(response, Constants.SUCCESS, mcResponse, mcResponse.getStatusDecsr());
@@ -96,7 +98,8 @@ public class CommonServiceImpl implements CommonService {
     public String checkMcApplicabilityInsert(String tableName, String formName, String requestType) throws JsonProcessingException {
         String result = Constants.EMPTY;
         ObjectMapper objectMapper = new ObjectMapper();
-        ProcedureResponse checkMcApplicability = workflowService.checkMcApplicability(tableName, formName, requestType);
+//        ProcedureResponse checkMcApplicability = workflowService.checkMcApplicability(tableName, formName, requestType);
+        ProcedureResponse checkMcApplicability =new ProcedureResponse();
         if (checkMcApplicability != null) {
             ProcedureResponse procedureResponse = objectMapper.readValue(convertObjecttoJson(checkMcApplicability), ProcedureResponse.class);
             if (procedureResponse == null || procedureResponse.getMcApplicability() <= 0) {
@@ -111,7 +114,8 @@ public class CommonServiceImpl implements CommonService {
     @Override
     public Response parkRequestInsert(String tableName, String formName, String requestType, String updateType, String refId, String updateJson, BigDecimal userId) {
         Response response = new Response();
-        McResponse mcResponse = workflowService.parkRequestToChecker(formName, "", tableName, requestType, updateType, refId, updateJson, userId);
+//        McResponse mcResponse = workflowService.parkRequestToChecker(formName, "", tableName, requestType, updateType, refId, updateJson, userId);
+        McResponse mcResponse =new McResponse();
         if (mcResponse != null) {
             if (mcResponse.getStatus() == 1) {
                 setResponse(response, Constants.SUCCESS, mcResponse, mcResponse.getStatusDecsr());
@@ -127,7 +131,8 @@ public class CommonServiceImpl implements CommonService {
     @Override
     public Response mcAction(McActionRequest mcActionRequest) {
         Response response = new Response();
-        McActionResponse mcActionResponse = workflowService.mcAction(mcActionRequest);
+//        McActionResponse mcActionResponse = workflowService.mcAction(mcActionRequest);
+        McActionResponse mcActionResponse =new McActionResponse();
         if (mcActionResponse != null) {
             if (mcActionRequest.getAction().equals("2") && mcActionResponse.getRequestStatus().equals("A") && mcActionResponse.getStatus() == 1) {
                 response.setPayLoad(Constants.ACTION_TAKEN);
@@ -170,52 +175,52 @@ public class CommonServiceImpl implements CommonService {
         response.setMessage(message != null ? message : tblResponseMessage.getResponseMessageDescr());
     }
 
-    @Override
-    public TblMcRequest getMcRequestCheckerById(int mcRequestId) {
-        return tblMcRequestRepo.findByMcRequestId(mcRequestId);
-    }
+//    @Override
+//    public TblMcRequest getMcRequestCheckerById(int mcRequestId) {
+//        return tblMcRequestRepo.findByMcRequestId(mcRequestId);
+//    }
+//
+//    @Override
+//    @Async
+//    public String logs(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response resp) throws HttpClientErrorException {
+//        RequestKafka requestKafka = setLogsRequestFromPostApis(endPoint, logLevel, className, methodName, packageDetails, request, message, resp);
+//        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+//        Map<String, String> headerMap = new HashMap<>();
+//        headerMap.put(Constants.accept, Constants.applicationJson);
+//        Map<String, Object> postParam = new HashMap<>();
+//        headers.setAll(headerMap);
+//        postParam.put(Constants.securityVariable, requestKafka.getSecurity());
+//        postParam.put(Constants.payloadVariable, requestKafka.getPayload());
+//        postParam.put(Constants.indexNameVariable, Constants.indexName);
+//        return getResponseFromPostAPI(headerMap, postParam, url);
+//    }
 
-    @Override
-    @Async
-    public String logs(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response resp) throws HttpClientErrorException {
-        RequestKafka requestKafka = setLogsRequestFromPostApis(endPoint, logLevel, className, methodName, packageDetails, request, message, resp);
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        Map<String, String> headerMap = new HashMap<>();
-        headerMap.put(Constants.accept, Constants.applicationJson);
-        Map<String, Object> postParam = new HashMap<>();
-        headers.setAll(headerMap);
-        postParam.put(Constants.securityVariable, requestKafka.getSecurity());
-        postParam.put(Constants.payloadVariable, requestKafka.getPayload());
-        postParam.put(Constants.indexNameVariable, Constants.indexName);
-        return getResponseFromPostAPI(headerMap, postParam, url);
-    }
-
-    private RequestKafka setLogsRequestFromPostApis(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response response) {
-        RequestKafka requestKafka = new RequestKafka();
-        PayloadKafka payloadKafka = new PayloadKafka();
-
-        payloadKafka.setDateTime(new Date().toString());
-        payloadKafka.setEndpoint(endPoint);
-        payloadKafka.setClassName(className);
-        payloadKafka.setMethodName(methodName);
-        payloadKafka.setLoggingLevel(logLevel);
-        if (response.getResponseCode() != null && response.getResponseCode().equals(Constants.EMPTY)) {
-            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(response));
-        } else {
-            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(request));
-        }
-        payloadKafka.setMessage(message);
-        payloadKafka.setServiceName(serviceName);
-        payloadKafka.setPackageName(packageDetails);
-        payloadKafka.setLoggerID(Constants.KAFKA_PID_VAR + System.getProperty(Constants.kafkaPidVar));
-        if (response.getResponseCode() != null && !response.getResponseCode().equals(Constants.EMPTY)) {
-            requestKafka.setSecurity(new Security());
-        } else {
-            requestKafka.setSecurity(request.getSecurity());
-        }
-        requestKafka.setPayload(payloadKafka);
-        return requestKafka;
-    }
+//    private RequestKafka setLogsRequestFromPostApis(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response response) {
+//        RequestKafka requestKafka = new RequestKafka();
+//        PayloadKafka payloadKafka = new PayloadKafka();
+//
+//        payloadKafka.setDateTime(new Date().toString());
+//        payloadKafka.setEndpoint(endPoint);
+//        payloadKafka.setClassName(className);
+//        payloadKafka.setMethodName(methodName);
+//        payloadKafka.setLoggingLevel(logLevel);
+//        if (response.getResponseCode() != null && response.getResponseCode().equals(Constants.EMPTY)) {
+//            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(response));
+//        } else {
+//            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(request));
+//        }
+//        payloadKafka.setMessage(message);
+//        payloadKafka.setServiceName(serviceName);
+//        payloadKafka.setPackageName(packageDetails);
+//        payloadKafka.setLoggerID(Constants.KAFKA_PID_VAR + System.getProperty(Constants.kafkaPidVar));
+//        if (response.getResponseCode() != null && !response.getResponseCode().equals(Constants.EMPTY)) {
+//            requestKafka.setSecurity(new Security());
+//        } else {
+//            requestKafka.setSecurity(request.getSecurity());
+//        }
+//        requestKafka.setPayload(payloadKafka);
+//        return requestKafka;
+//    }
 
     public <K, V> String getResponseFromPostAPI(Map<String, String> headerMap, Map<K, V> postParam, String url) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();

@@ -4,65 +4,47 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the tbl_role database table.
+ * The persistent class for the TBL_ROLE database table.
  * 
  */
 @Entity
-@Table(name="tbl_role")
+@Table(name="TBL_ROLE")
 @NamedQuery(name="TblRole.findAll", query="SELECT t FROM TblRole t")
 public class TblRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_ROLE_ROLEID_GENERATOR", sequenceName="TBL_ROLE_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_ROLE_ROLEID_GENERATOR")
 	@Column(name="ROLE_ID")
-	private int roleId;
+	private long roleId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-	@Column(name="CREATEUSER")
-	private int createuser;
-
-
+	private BigDecimal createuser;
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
-
-
-	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
-
+	private BigDecimal lastupdateuser;
 
 	@Column(name="ROLE_CODE")
 	private String roleCode;
 
-
 	@Column(name="ROLE_DESCR")
 	private String roleDescr;
 
-
-
-	@Column(name="UPDATEINDEX")
-	private int updateindex;
-
-
-//	//bi-directional many-to-one association to LkpStatus
-//	@ManyToOne
-//	@JoinColumn(name="STATUS_ID")
-//	private LkpStatus lkpStatus;
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblRoleRight
 	@OneToMany(mappedBy="tblRole")
@@ -70,43 +52,39 @@ public class TblRole implements Serializable {
 	private List<TblRoleRight> tblRoleRights;
 
 	//bi-directional many-to-one association to TblUserRole
-	@JsonIgnore
 	@OneToMany(mappedBy="tblRole")
+	@JsonIgnore
 	private List<TblUserRole> tblUserRoles;
 
 	public TblRole() {
 	}
 
-	public int getRoleId() {
+	public long getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(long roleId) {
 		this.roleId = roleId;
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
-
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -114,23 +92,23 @@ public class TblRole implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
 	public String getRoleCode() {
-		return roleCode;
+		return this.roleCode;
 	}
 
 	public void setRoleCode(String roleCode) {
@@ -138,22 +116,20 @@ public class TblRole implements Serializable {
 	}
 
 	public String getRoleDescr() {
-		return roleDescr;
+		return this.roleDescr;
 	}
 
 	public void setRoleDescr(String roleDescr) {
 		this.roleDescr = roleDescr;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
-
-
 
 	public List<TblRoleRight> getTblRoleRights() {
 		return this.tblRoleRights;

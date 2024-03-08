@@ -15,7 +15,6 @@ package com.mfs.merchantQR.controller.lookup;
 
 import com.mfs.merchantQR.controller.AbstarctApi;
 import com.mfs.merchantQR.dto.LovResponse;
-import com.mfs.merchantQR.dto.Request;
 import com.mfs.merchantQR.dto.Response;
 import com.mfs.merchantQR.model.TblResponseMessage;
 import com.mfs.merchantQR.service.LookupService;
@@ -48,10 +47,16 @@ public class LookupGetApis extends AbstarctApi {
         Response response = new Response();
         String methodName = getCurrentMethodName();
         try {
-            logs(Constants.GET_LOV_DATA, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
+//            logs(Constants.GET_LOV_DATA, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
             List<LovResponse> lovResponses = new ArrayList<>();
             if (key.equals(Constants.TBL_ROLE)) {
                 lovResponses = lookupService.getRole();
+            }
+            if (key.equals(Constants.TBL_USER)) {
+                lovResponses = lookupService.getUser();
+            }
+            if (key.equals(Constants.LKP_STATUS)) {
+                lovResponses = lookupService.getLkpStatus();
             }
             if (lovResponses != null && !lovResponses.isEmpty()) {
                 TblResponseMessage tblResponseMessage;
@@ -68,9 +73,14 @@ public class LookupGetApis extends AbstarctApi {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            setResponse(response, Constants.RECORD_NOT_FOUND, e.getMessage());
+
+            TblResponseMessage tblResponseMessage;
+            tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.RECORD_NOT_FOUND);
+            response.setPayLoad(null);
+            response.setResponseCode(tblResponseMessage.getResponseMessageCode());
+            response.setMessage(tblResponseMessage.getResponseMessageDescr());
         }
-        logs(Constants.GET_LOV_DATA, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo, response);
+//        logs(Constants.GET_LOV_DATA, Constants.LOG_INFO, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethodInfo, response);
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 

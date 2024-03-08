@@ -15,14 +15,12 @@ Version:1.0
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mfs.merchantQR.controller.AbstarctApi;
-import com.mfs.merchantQR.dto.Request;
 import com.mfs.merchantQR.dto.Response;
-import com.mfs.merchantQR.model.*;
-import com.mfs.merchantQR.service.*;
+import com.mfs.merchantQR.model.TblResponseMessage;
+import com.mfs.merchantQR.service.MerchantQrService;
 import com.mfs.merchantQR.utils.Constants;
-import org.primefaces.shaded.json.JSONException;
+//import org.primefaces.shaded.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.DataAccessException;
@@ -32,9 +30,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestClientException;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -64,7 +59,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.BAD_REQUEST);
     }
 
@@ -76,7 +71,7 @@ public class ValidatorController extends AbstarctApi {
         Response response = new Response();
         response.setResponseCode(tblResponseMessage != null ? moduleId+tblResponseMessage.getResponseMessageCode() : moduleId+Constants.generalProcessingCode);
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe, this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe, this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
         return new ResponseEntity<Response>(response, HttpStatus.BAD_REQUEST);
 
     }
@@ -89,7 +84,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -100,9 +95,9 @@ public class ValidatorController extends AbstarctApi {
         TblResponseMessage tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.exception);
         Response response = new Response();
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-        
+
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -115,7 +110,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.REQUEST_TIMEOUT);
     }
 
@@ -128,7 +123,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -141,7 +136,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -154,7 +149,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -167,7 +162,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -180,7 +175,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -193,7 +188,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -206,7 +201,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -219,7 +214,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -232,7 +227,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -245,7 +240,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -258,22 +253,22 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = JSONException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Response> handleJSONException(JSONException ex) {
-        String moduleId = env.getProperty(Constants.moduleIdKey).toString();
-        TblResponseMessage tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.jsonException);
-        Response response = new Response();
-        response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-        
-        response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
-        return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(value = JSONException.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public ResponseEntity<Response> handleJSONException(JSONException ex) {
+//        String moduleId = env.getProperty(Constants.moduleIdKey).toString();
+//        TblResponseMessage tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.jsonException);
+//        Response response = new Response();
+//        response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+//
+//        response.setMessage(ex.getMessage());
+////        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     @ExceptionHandler(value = SQLRecoverableException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -284,7 +279,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -297,7 +292,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -310,7 +305,7 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -323,25 +318,25 @@ public class ValidatorController extends AbstarctApi {
         response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
         
         response.setMessage(ex.getMessage());
-        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
+//        logs(Constants.exceptionEndPoint, Constants.logLevelExe,  this.getClass().getSimpleName(), Constants.empty, this.getClass().getPackageName(), new Request(), Constants.endingMethod,response);
         return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = RestClientException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Response> handleRestClientException(RestClientException ex) throws HttpClientErrorException, JsonProcessingException {
-        if (ex instanceof HttpStatusCodeException) {
-            String moduleId = env.getProperty(Constants.moduleIdKey).toString();
-            String errorResponse = ((HttpStatusCodeException) ex).getResponseBodyAsString();
-            ObjectMapper objectMapper = new ObjectMapper();
-            Response readValueToString = objectMapper.readValue(errorResponse, Response.class);
-            return convertStringToResponseObject(readValueToString, moduleId+readValueToString.getResponseCode());
-        } else {
-            String moduleId = env.getProperty(Constants.moduleIdKey).toString();
-            ObjectMapper objectMapper = new ObjectMapper();
-            Response readValueToString = objectMapper.readValue(Constants.empty, Response.class);
-            return convertStringToResponseObject(readValueToString, moduleId+readValueToString.getResponseCode());
-        }
-    }
+//    @ExceptionHandler(value = RestClientException.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public ResponseEntity<Response> handleRestClientException(RestClientException ex) throws HttpClientErrorException, JsonProcessingException {
+//        if (ex instanceof HttpStatusCodeException) {
+//            String moduleId = env.getProperty(Constants.moduleIdKey).toString();
+//            String errorResponse = ((HttpStatusCodeException) ex).getResponseBodyAsString();
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            Response readValueToString = objectMapper.readValue(errorResponse, Response.class);
+//            return convertStringToResponseObject(readValueToString, moduleId+readValueToString.getResponseCode());
+//        } else {
+//            String moduleId = env.getProperty(Constants.moduleIdKey).toString();
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            Response readValueToString = objectMapper.readValue(Constants.empty, Response.class);
+//            return convertStringToResponseObject(readValueToString, moduleId+readValueToString.getResponseCode());
+//        }
+//    }
 
 }

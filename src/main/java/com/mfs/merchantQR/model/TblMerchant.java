@@ -1,51 +1,46 @@
 package com.mfs.merchantQR.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
 /**
- * The persistent class for the tbl_merchant database table.
+ * The persistent class for the TBL_MERCHANT database table.
  * 
  */
 @Entity
-@Table(name="tbl_merchant")
+@Table(name="TBL_MERCHANT")
 @NamedQuery(name="TblMerchant.findAll", query="SELECT t FROM TblMerchant t")
 public class TblMerchant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_MERCHANT_MERCHANTID_GENERATOR", sequenceName="TBL_MERCHANT_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_MERCHANT_MERCHANTID_GENERATOR")
 	@Column(name="MERCHANT_ID")
-	private int merchantId;
+	private long merchantId;
 
-	@Column(name="CITY")
 	private String city;
 
-	@Column(name="CNIC")
 	private String cnic;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-	@Column(name="CREATEUSER")
-	private Integer createuser;
+	private BigDecimal createuser;
+
+	@Column(name="DOWNLOAD_STATUS")
+	private String downloadStatus;
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-	@Column(name="DOWNLOAD_STATUS")
-	private String downlaodStatus;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
-	@Column(name="LASTUPDATEUSER")
-	private Integer lastupdateuser;
+	private BigDecimal lastupdateuser;
 
 	@Column(name="MERCHANT_MSISDN")
 	private String merchantMsisdn;
@@ -59,18 +54,15 @@ public class TblMerchant implements Serializable {
 	@Column(name="TILL_ID")
 	private String tillId;
 
-	@Column(name="UPDATEINDEX")
-	private Integer updateindex;
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to LkpStatus
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name="STATUS_ID")
 	private LkpStatus lkpStatus;
 
-	public TblMerchant() {
-	}
-
+	@Transient
+	private String downlaodStatus;
 
 	public String getDownlaodStatus() {
 		return downlaodStatus;
@@ -80,11 +72,14 @@ public class TblMerchant implements Serializable {
 		this.downlaodStatus = downlaodStatus;
 	}
 
-	public int getMerchantId() {
+	public TblMerchant() {
+	}
+
+	public long getMerchantId() {
 		return this.merchantId;
 	}
 
-	public void setMerchantId(int merchantId) {
+	public void setMerchantId(long merchantId) {
 		this.merchantId = merchantId;
 	}
 
@@ -112,12 +107,20 @@ public class TblMerchant implements Serializable {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
+	public BigDecimal getCreateuser() {
 		return this.createuser;
 	}
 
-	public void setCreateuser(Integer createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
+	}
+
+	public String getDownloadStatus() {
+		return this.downloadStatus;
+	}
+
+	public void setDownloadStatus(String downloadStatus) {
+		this.downloadStatus = downloadStatus;
 	}
 
 	public String getIsActive() {
@@ -136,11 +139,11 @@ public class TblMerchant implements Serializable {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
+	public BigDecimal getLastupdateuser() {
 		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(Integer lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
@@ -176,11 +179,11 @@ public class TblMerchant implements Serializable {
 		this.tillId = tillId;
 	}
 
-	public int getUpdateindex() {
+	public BigDecimal getUpdateindex() {
 		return this.updateindex;
 	}
 
-	public void setUpdateindex(Integer updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 

@@ -28,9 +28,9 @@ public interface CommonService {
     Response mcAction(McActionRequest mcActionRequest);
 
     //    for getting single MC request object
-    TblMcRequest getMcRequestCheckerById(int mcRequestId);
+//    TblMcRequest getMcRequestCheckerById(int mcRequestId);
 
-    String logs(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response resp) throws HttpClientErrorException;
+//    String logs(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response resp) throws HttpClientErrorException;
 
     LkpStatus getStatusByCode(String code);
 

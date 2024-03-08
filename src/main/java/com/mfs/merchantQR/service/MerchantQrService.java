@@ -21,13 +21,17 @@ public interface MerchantQrService {
 
     List<TblUser> getAllUsersBySearch(GetAllUsersRequest getAllUsersRequest);
 
-    List<TblMerchant> getAllMerchantBySearch(GetAllMerchantRequest getAllMerchantRequest);
+    List<TblMerchant> getAllMerchantBySearch(GetAllMerchantFromMicrobank getAllMerchantRequest);
 
     TblUser getUserById(int userId);
 
-    TblMcRequest getUserUpdateCheckerById(int mcRequestId);
+//    TblMcRequest getUserUpdateCheckerById(int mcRequestId);
 
-    TblUser loginMember(String email, String password);
+    TblUser loginMember(TblUser tblUser);
 
     TblMerchant updateDownloadStatus(TokenData loggedUserDetail, UpdateDownloadStatusRequest updateDownloadStatusRequest);
+
+    List<MerchantAccountDTO> getAllMerchant(GetAllMerchantFromMicrobank getAllMerchantFromMicrobank);
+
+    StaticQrResponse getStaticQR(String mobileNumber);
 }

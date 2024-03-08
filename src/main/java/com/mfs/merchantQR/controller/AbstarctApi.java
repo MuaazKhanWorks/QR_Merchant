@@ -16,11 +16,16 @@ Version:1.0
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.mfs.merchantQR.dto.*;
+import com.mfs.merchantQR.dto.McActionRequest;
+import com.mfs.merchantQR.dto.Request;
+import com.mfs.merchantQR.dto.Response;
+import com.mfs.merchantQR.dto.TokenData;
 import com.mfs.merchantQR.model.TblResponseMessage;
 import com.mfs.merchantQR.service.MerchantQrService;
 import com.mfs.merchantQR.service.impl.MerchantQrServiceImpl;
-import com.mfs.merchantQR.utils.*;
+import com.mfs.merchantQR.utils.Constants;
+import com.mfs.merchantQR.utils.JWTSecurity;
+import org.primefaces.shaded.json.JSONException;
 import org.primefaces.shaded.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -29,7 +34,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -110,7 +114,7 @@ public class AbstarctApi {
     }
 
 
-    public Request convertStringToRequestObjectData(String data) throws JsonProcessingException {
+    public Request convertStringToRequestObjectData(String data) throws JsonProcessingException, JSONException {
         JSONObject jsonData = new JSONObject(data);
         ObjectMapper objectMapper = new ObjectMapper();
         Request readValueToString = objectMapper.readValue(jsonData.get(Constants.requestData).toString(), Request.class);
@@ -165,7 +169,7 @@ public class AbstarctApi {
     }
 
     //this method is used to set convert string to request object
-    public Request convertStringToRequestObject(String data) throws JsonProcessingException {
+    public Request convertStringToRequestObject(String data) throws JsonProcessingException, JSONException {
         JSONObject jsonData = new JSONObject(data);
         ObjectMapper objectMapper = new ObjectMapper();
         Request readValueToString = objectMapper.readValue(jsonData.get(Constants.requestData).toString(), Request.class);
@@ -215,48 +219,48 @@ public class AbstarctApi {
 
 
     //this method is used to park logs to kafka
-    @Async
-    public String logs(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response resp) throws HttpClientErrorException {
-        RequestKafka requestKafka = setLogsRequestFromPostApis(endPoint, logLevel, className, methodName, packageDetails, request, message, resp);
-        String url = env.getProperty(Constants.logsurl).toString();
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-        Map<String, String> headerMap = new HashMap<String, String>();
-        headerMap.put(Constants.accept, Constants.applicationJson);
-        Map<String, Object> postParam = new HashMap<String, Object>();
-        headers.setAll(headerMap);
-        postParam.put(Constants.securityVariable, requestKafka.getSecurity());
-        postParam.put(Constants.payloadVariable, requestKafka.getPayload());
-        postParam.put(Constants.indexNameVariable, Constants.configuration);
-        return getResponseFromPostAPI(headerMap, postParam, url);
-    }
+//    @Async
+//    public String logs(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response resp) throws HttpClientErrorException {
+//        RequestKafka requestKafka = setLogsRequestFromPostApis(endPoint, logLevel, className, methodName, packageDetails, request, message, resp);
+//        String url = env.getProperty(Constants.logsurl).toString();
+//        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+//        Map<String, String> headerMap = new HashMap<String, String>();
+//        headerMap.put(Constants.accept, Constants.applicationJson);
+//        Map<String, Object> postParam = new HashMap<String, Object>();
+//        headers.setAll(headerMap);
+//        postParam.put(Constants.securityVariable, requestKafka.getSecurity());
+//        postParam.put(Constants.payloadVariable, requestKafka.getPayload());
+//        postParam.put(Constants.indexNameVariable, Constants.configuration);
+//        return getResponseFromPostAPI(headerMap, postParam, url);
+//    }
 
-    //Logs Request From Post APIS
-    public RequestKafka setLogsRequestFromPostApis(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response response) {
-        RequestKafka requestKafka = new RequestKafka();
-        PayloadKafka payloadKafka = new PayloadKafka();
-        String serviceName = env.getProperty(Constants.serviceNameVar);
-        payloadKafka.setDateTime(new Date().toString());
-        payloadKafka.setEndpoint(endPoint);
-        payloadKafka.setClassName(className);
-        payloadKafka.setMethodName(methodName);
-        payloadKafka.setLoggingLevel(logLevel);
-        if (response.getResponseCode() != null && response.getResponseCode() != "") {
-            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(response));
-        } else {
-            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(request));
-        }
-        payloadKafka.setMessage(message);
-        payloadKafka.setServiceName(serviceName);
-        payloadKafka.setPackageName(packageDetails);
-        payloadKafka.setLoggerID(Constants.kafkaPidVar + System.getProperty(Constants.kafkaPidVar));
-        if (response.getResponseCode() != null && response.getResponseCode() != "") {
-            requestKafka.setSecurity(new Security());
-        } else {
-            requestKafka.setSecurity(request.getSecurity());
-        }
-        requestKafka.setPayload(payloadKafka);
-        return requestKafka;
-    }
+//    //Logs Request From Post APIS
+//    public RequestKafka setLogsRequestFromPostApis(String endPoint, String logLevel, String className, String methodName, String packageDetails, Request request, String message, Response response) {
+//        RequestKafka requestKafka = new RequestKafka();
+//        PayloadKafka payloadKafka = new PayloadKafka();
+//        String serviceName = env.getProperty(Constants.serviceNameVar);
+//        payloadKafka.setDateTime(new Date().toString());
+//        payloadKafka.setEndpoint(endPoint);
+//        payloadKafka.setClassName(className);
+//        payloadKafka.setMethodName(methodName);
+//        payloadKafka.setLoggingLevel(logLevel);
+//        if (response.getResponseCode() != null && response.getResponseCode() != "") {
+//            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(response));
+//        } else {
+//            payloadKafka.setPayloadService(Constants.kafkaDataVar + convertObjecttoJson(request));
+//        }
+//        payloadKafka.setMessage(message);
+//        payloadKafka.setServiceName(serviceName);
+//        payloadKafka.setPackageName(packageDetails);
+//        payloadKafka.setLoggerID(Constants.kafkaPidVar + System.getProperty(Constants.kafkaPidVar));
+//        if (response.getResponseCode() != null && response.getResponseCode() != "") {
+//            requestKafka.setSecurity(new Security());
+//        } else {
+//            requestKafka.setSecurity(request.getSecurity());
+//        }
+//        requestKafka.setPayload(payloadKafka);
+//        return requestKafka;
+//    }
 
     //Method to check Logged User
     public TokenData getLoggedUserDataFromHeaderToken(String token) {

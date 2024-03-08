@@ -8,4 +8,5 @@ public interface LookupService {
 
     List<LovResponse> getUser();
     List<LovResponse> getRole();
+    List<LovResponse> getLkpStatus();
 }

@@ -1,16 +1,15 @@
 package com.mfs.merchantQR.repo;
 
 import com.mfs.merchantQR.model.TblMerchant;
-import com.mfs.merchantQR.model.TblUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface TblMerchantRepo extends JpaRepository<TblMerchant,Integer> {
+public interface TblMerchantRepo extends JpaRepository<TblMerchant,Long> {
 
     @Query(value = "SELECT *\n" +
-            "FROM qrmerchant.tbl_merchant \n" +
+            "FROM tbl_merchant \n" +
             "WHERE \n" +
             "    MERCHANT_NAME = COALESCE(NULLIF(:merchantName, ''), MERCHANT_NAME)\n" +
             "    AND MERCHANT_MSISDN = COALESCE(NULLIF(:merchantMsdsdn, ''), MERCHANT_MSISDN)\n" +

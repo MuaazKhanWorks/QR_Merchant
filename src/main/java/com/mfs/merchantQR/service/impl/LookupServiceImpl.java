@@ -34,6 +34,9 @@ public class LookupServiceImpl implements LookupService {
     @Autowired
     private TblMcConfigRepo tblMcConfigRepo;
 
+    @Autowired
+    private LkpStatusRepo lkpStatusRepo;
+
 
     @Override
     public List<LovResponse> getUser() {
@@ -63,6 +66,21 @@ public class LookupServiceImpl implements LookupService {
                 lovResponse = new LovResponse();
                 lovResponse.setId(String.valueOf(tblRole.getRoleId()));
                 lovResponse.setDescr(tblRole.getRoleDescr());
+
+                lovResponses.add(lovResponse);
+            }
+        }
+        return lovResponses;
+    }
+    public List<LovResponse> getLkpStatus() {
+        List<LovResponse> lovResponses = new ArrayList<>();
+        List<LkpStatus> tblRoles = lkpStatusRepo.findByIsActive(Constants.SET_YES);
+        if (tblRoles != null && !tblRoles.isEmpty()) {
+            LovResponse lovResponse = null;
+            for (LkpStatus tblRole : tblRoles) {
+                lovResponse = new LovResponse();
+                lovResponse.setId(String.valueOf(tblRole.getStatusId()));
+                lovResponse.setDescr(tblRole.getStatusDescr());
 
                 lovResponses.add(lovResponse);
             }

@@ -16,6 +16,8 @@ import com.mfs.merchantQR.model.*;
 import com.mfs.merchantQR.service.*;
 import com.mfs.merchantQR.utils.*;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +42,7 @@ public class QrGetApi extends AbstarctApi {
     @Autowired
     private MerchantQrService merchantQrService;
 
+    Logger LOG = LoggerFactory.getLogger(LoginPostApi.class);
 
     @RequestMapping(value = Constants.getUserById, method = RequestMethod.GET)
     public ResponseEntity<Response> getUserById(@PathVariable int userId, HttpServletRequest request) throws JsonProcessingException {
@@ -47,7 +50,8 @@ public class QrGetApi extends AbstarctApi {
         }.getClass().getEnclosingMethod().getName();
         Response response = new Response();
         String moduleId = env.getProperty(Constants.moduleIdKey).toString();
-        logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
+        LOG.info("\n\n\nINSIDE \n CLASS == MicrobankZmilesLovController \n METHOD == lovTier(); ");
+//        logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
         TblResponseMessage tblResponseMessage;
             TblUser tblUser = merchantQrService.getUserById(userId);
             if (tblUser != null) {
@@ -55,56 +59,65 @@ public class QrGetApi extends AbstarctApi {
                 response.setPayLoad(tblUser);
                 response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
                 response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-                logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+                LOG.info("\n\n\nINSIDE \n CLASS == MicrobankZmilesLovController \n METHOD == lovTier(); ");
+
+//                logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
             } else {
                 tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
                 response.setPayLoad(tblUser);
                 response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
                 response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-                logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+                LOG.info("\n\n\nINSIDE \n CLASS == MicrobankZmilesLovController \n METHOD == lovTier(); ");
+//                logs(Constants.getUserById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
             }
         return convertStringToResponseObject(response, response.getResponseCode());
     }
 
-    @RequestMapping(value = Constants.getUserUpdateCheckerById, method = RequestMethod.GET)
-    public ResponseEntity<Response> getUserUpdateCheckerById(@PathVariable int mcRequestId, HttpServletRequest request) throws JsonProcessingException {
-        String methodName = new Object() {
-        }.getClass().getEnclosingMethod().getName();
-        Response response = new Response();
-        TblResponseMessage tblResponseMessage=null;
-        String moduleId = env.getProperty(Constants.moduleIdKey);
-        logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
-        List<Error> validations = FieldsValidator.getValidatorId(mcRequestId);
-        if (validations.size() <= 0) {
-
-            TblMcRequest tblMcRequest = merchantQrService.getUserUpdateCheckerById(mcRequestId);
-            TblUser tblUser =new TblUser();
-            UpdateUserRequest updateUserRequest = new UpdateUserRequest();
-            ObjectMapper objectMapper = new ObjectMapper();
-            updateUserRequest=objectMapper.readValue(tblMcRequest.getUpdateJson(), UpdateUserRequest.class);
-            ModelMapper modelMapper = new ModelMapper();
-            modelMapper.map(updateUserRequest, tblUser);
-
-            if (tblUser != null) {
-                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
-                response.setPayLoad(tblUser);
-                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-                logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
-            } else {
-                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
-                response.setPayLoad(tblUser);
-                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
-                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
-                logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
-            }
-        } else {
-            response.setResponseCode(Constants.fieldValidationCode);
-            response.setErrors(validations);
-            response.setMessage(Constants.validationFailed);
-        }
-        return convertStringToResponseObject(response, response.getResponseCode());
-    }
-
+//    @RequestMapping(value = Constants.getUserUpdateCheckerById, method = RequestMethod.GET)
+//    public ResponseEntity<Response> getUserUpdateCheckerById(@PathVariable int mcRequestId, HttpServletRequest request) throws JsonProcessingException {
+//        String methodName = new Object() {
+//        }.getClass().getEnclosingMethod().getName();
+//        Response response = new Response();
+//        TblResponseMessage tblResponseMessage=null;
+//        String moduleId = env.getProperty(Constants.moduleIdKey);
+//        LOG.info("\n\n\nINSIDE \n CLASS == MicrobankZmilesLovController \n METHOD == lovTier(); ");
+//
+////        logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.callingMethodInfo, response);
+//        List<Error> validations = FieldsValidator.getValidatorId(mcRequestId);
+//        if (validations.size() <= 0) {
+//
+//            TblMcRequest tblMcRequest = merchantQrService.getUserUpdateCheckerById(mcRequestId);
+//            TblUser tblUser =new TblUser();
+//            UpdateUserRequest updateUserRequest = new UpdateUserRequest();
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            updateUserRequest=objectMapper.readValue(tblMcRequest.getUpdateJson(), UpdateUserRequest.class);
+//            ModelMapper modelMapper = new ModelMapper();
+//            modelMapper.map(updateUserRequest, tblUser);
+//
+//            if (tblUser != null) {
+//                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.success);
+//                response.setPayLoad(tblUser);
+//                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+//                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+//                LOG.info("\n\n\nINSIDE \n CLASS == MicrobankZmilesLovController \n METHOD == lovTier(); ");
+//
+////                logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+//            } else {
+//                tblResponseMessage = merchantQrService.findByResponseMessageDescr(Constants.recordNotFound);
+//                response.setPayLoad(tblUser);
+//                response.setResponseCode(moduleId+tblResponseMessage.getResponseMessageCode());
+//                response.setMessage(tblResponseMessage!=null?tblResponseMessage.getResponseMessageDescr():Constants.generalProcessingError);
+//                LOG.info("\n\n\nINSIDE \n CLASS == MicrobankZmilesLovController \n METHOD == lovTier(); ");
+//
+////                logs(Constants.getUserUpdateCheckerById, Constants.logInfo, this.getClass().getSimpleName(), methodName, this.getClass().getPackageName(), new Request(), Constants.endingMethod, response);
+//            }
+//        } else {
+//            response.setResponseCode(Constants.fieldValidationCode);
+//            response.setErrors(validations);
+//            response.setMessage(Constants.validationFailed);
+//        }
+//        return convertStringToResponseObject(response, response.getResponseCode());
+//    }
+//
 
 }

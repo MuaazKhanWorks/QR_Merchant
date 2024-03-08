@@ -1,56 +1,43 @@
 package com.mfs.merchantQR.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 
 /**
- * The persistent class for the tbl_mc_config_detail database table.
+ * The persistent class for the TBL_MC_CONFIG_DETAIL database table.
  * 
  */
 @Entity
-@Table(name="tbl_mc_config_detail")
+@Table(name="TBL_MC_CONFIG_DETAIL")
 @NamedQuery(name="TblMcConfigDetail.findAll", query="SELECT t FROM TblMcConfigDetail t")
 public class TblMcConfigDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_MC_CONFIG_DETAIL_MCCONFIGDETAILID_GENERATOR", sequenceName="TBL_MC_CONFIG_DETAIL_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_MC_CONFIG_DETAIL_MCCONFIGDETAILID_GENERATOR")
 	@Column(name="MC_CONFIG_DETAIL_ID")
-	private int mcConfigDetailId;
+	private long mcConfigDetailId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-	@Column(name="CREATEUSER")
-	private int createuser;
-
+	private BigDecimal createuser;
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
+	private BigDecimal lastupdateuser;
 
-	@Column(name="LASTUPDATEUSER")
-	private int lastupdateuser;
+	private BigDecimal seq;
 
-
-	@Column(name="SEQ")
-	private int seq;
-
-
-	@Column(name="UPDATEINDEX")
-	private int updateindex;
-
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblMcConfig
 	@ManyToOne
@@ -58,52 +45,39 @@ public class TblMcConfigDetail implements Serializable {
 	private TblMcConfig tblMcConfig;
 
 	//bi-directional many-to-one association to TblUser
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private TblUser tblUser;
 
-	//bi-directional many-to-one association to TblMcPendingRequest
-	@OneToMany(mappedBy="tblMcConfigDetail")
-	private List<TblMcPendingRequest> tblMcPendingRequests;
-
-	//bi-directional many-to-one association to TblMcRequestAction
-	@OneToMany(mappedBy="tblMcConfigDetail")
-	private List<TblMcRequestAction> tblMcRequestActions;
-
 	public TblMcConfigDetail() {
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public long getMcConfigDetailId() {
+		return this.mcConfigDetailId;
 	}
 
-	public int getMcConfigDetailId() {
-		return mcConfigDetailId;
-	}
-
-	public void setMcConfigDetailId(int mcConfigDetailId) {
+	public void setMcConfigDetailId(long mcConfigDetailId) {
 		this.mcConfigDetailId = mcConfigDetailId;
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -111,39 +85,39 @@ public class TblMcConfigDetail implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(int lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
-	public int getSeq() {
-		return seq;
+	public BigDecimal getSeq() {
+		return this.seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(BigDecimal seq) {
 		this.seq = seq;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(int updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 
 	public TblMcConfig getTblMcConfig() {
-		return tblMcConfig;
+		return this.tblMcConfig;
 	}
 
 	public void setTblMcConfig(TblMcConfig tblMcConfig) {
@@ -151,55 +125,11 @@ public class TblMcConfigDetail implements Serializable {
 	}
 
 	public TblUser getTblUser() {
-		return tblUser;
+		return this.tblUser;
 	}
 
 	public void setTblUser(TblUser tblUser) {
 		this.tblUser = tblUser;
-	}
-
-	public List<TblMcPendingRequest> getTblMcPendingRequests() {
-		return this.tblMcPendingRequests;
-	}
-
-	public void setTblMcPendingRequests(List<TblMcPendingRequest> tblMcPendingRequests) {
-		this.tblMcPendingRequests = tblMcPendingRequests;
-	}
-
-	public TblMcPendingRequest addTblMcPendingRequest(TblMcPendingRequest tblMcPendingRequest) {
-		getTblMcPendingRequests().add(tblMcPendingRequest);
-		tblMcPendingRequest.setTblMcConfigDetail(this);
-
-		return tblMcPendingRequest;
-	}
-
-	public TblMcPendingRequest removeTblMcPendingRequest(TblMcPendingRequest tblMcPendingRequest) {
-		getTblMcPendingRequests().remove(tblMcPendingRequest);
-		tblMcPendingRequest.setTblMcConfigDetail(null);
-
-		return tblMcPendingRequest;
-	}
-
-	public List<TblMcRequestAction> getTblMcRequestActions() {
-		return this.tblMcRequestActions;
-	}
-
-	public void setTblMcRequestActions(List<TblMcRequestAction> tblMcRequestActions) {
-		this.tblMcRequestActions = tblMcRequestActions;
-	}
-
-	public TblMcRequestAction addTblMcRequestAction(TblMcRequestAction tblMcRequestAction) {
-		getTblMcRequestActions().add(tblMcRequestAction);
-		tblMcRequestAction.setTblMcConfigDetail(this);
-
-		return tblMcRequestAction;
-	}
-
-	public TblMcRequestAction removeTblMcRequestAction(TblMcRequestAction tblMcRequestAction) {
-		getTblMcRequestActions().remove(tblMcRequestAction);
-		tblMcRequestAction.setTblMcConfigDetail(null);
-
-		return tblMcRequestAction;
 	}
 
 }

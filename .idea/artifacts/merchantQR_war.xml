@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="QR_Merchant.war">
+    <root id="archive" name="merchantQR-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="merchantQR:war exploded" />
     </root>
   </artifact>

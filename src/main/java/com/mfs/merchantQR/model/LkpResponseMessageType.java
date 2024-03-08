@@ -2,65 +2,50 @@ package com.mfs.merchantQR.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the lkp_response_message_type database table.
+ * The persistent class for the LKP_RESPONSE_MESSAGE_TYPE database table.
  * 
  */
 @Entity
-@Table(name="lkp_response_message_type")
+@Table(name="LKP_RESPONSE_MESSAGE_TYPE")
 @NamedQuery(name="LkpResponseMessageType.findAll", query="SELECT l FROM LkpResponseMessageType l")
 public class LkpResponseMessageType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="LKP_RESPONSE_MESSAGE_TYPE_RESPONSEMESSAGETYPEID_GENERATOR", sequenceName="LKP_RESPONSE_MESSAGE_TYPE_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LKP_RESPONSE_MESSAGE_TYPE_RESPONSEMESSAGETYPEID_GENERATOR")
 	@Column(name="RESPONSE_MESSAGE_TYPE_ID")
-	private int responseMessageTypeId;
+	private long responseMessageTypeId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-	@Column(name="CREATEUSER")
-	private int createuser;
-
+	private BigDecimal createuser;
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
 	@Temporal(TemporalType.DATE)
-	@Column(name="LASTUPDATEDATE")
 	private Date lastupdatedate;
 
-
-
-	@Column(name="LASTUPDATEUSER")
-	private Integer lastupdateuser;
-
-
+	private BigDecimal lastupdateuser;
 
 	@Column(name="RESPONSE_MESSAGE_TYPE_CODE")
 	private String responseMessageTypeCode;
 
-
 	@Column(name="RESPONSE_MESSAGE_TYPE_DESCR")
 	private String responseMessageTypeDescr;
-
-
 
 	@Column(name="RESPONSE_MESSAGE_TYPE_NAME")
 	private String responseMessageTypeName;
 
-
-
-	@Column(name="UPDATEINDEX")
-	private Integer updateindex;
-
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblResponseMessage
 	@OneToMany(mappedBy="lkpResponseMessageType")
@@ -69,36 +54,32 @@ public class LkpResponseMessageType implements Serializable {
 	public LkpResponseMessageType() {
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public long getResponseMessageTypeId() {
+		return this.responseMessageTypeId;
 	}
 
-	public int getResponseMessageTypeId() {
-		return responseMessageTypeId;
-	}
-
-	public void setResponseMessageTypeId(int responseMessageTypeId) {
+	public void setResponseMessageTypeId(long responseMessageTypeId) {
 		this.responseMessageTypeId = responseMessageTypeId;
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(int createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -106,27 +87,23 @@ public class LkpResponseMessageType implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-//	public void setLastupdateuser(int lastupdateuser) {
-//		this.lastupdateuser = lastupdateuser;
-//	}
-
-	public void setLastupdateuser(Integer lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
 	public String getResponseMessageTypeCode() {
-		return responseMessageTypeCode;
+		return this.responseMessageTypeCode;
 	}
 
 	public void setResponseMessageTypeCode(String responseMessageTypeCode) {
@@ -134,28 +111,26 @@ public class LkpResponseMessageType implements Serializable {
 	}
 
 	public String getResponseMessageTypeDescr() {
-		return responseMessageTypeDescr;
+		return this.responseMessageTypeDescr;
 	}
 
 	public void setResponseMessageTypeDescr(String responseMessageTypeDescr) {
 		this.responseMessageTypeDescr = responseMessageTypeDescr;
 	}
 
-
-
 	public String getResponseMessageTypeName() {
-		return responseMessageTypeName;
+		return this.responseMessageTypeName;
 	}
 
 	public void setResponseMessageTypeName(String responseMessageTypeName) {
 		this.responseMessageTypeName = responseMessageTypeName;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(Integer updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 

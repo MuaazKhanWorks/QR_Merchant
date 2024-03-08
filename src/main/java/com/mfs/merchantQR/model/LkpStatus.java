@@ -1,117 +1,98 @@
 package com.mfs.merchantQR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the lkp_status database table.
+ * The persistent class for the LKP_STATUS database table.
  * 
  */
 @Entity
-@Table(name="lkp_status")
+@Table(name="LKP_STATUS")
 @NamedQuery(name="LkpStatus.findAll", query="SELECT l FROM LkpStatus l")
 public class LkpStatus implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="LKP_STATUS_STATUSID_GENERATOR", sequenceName="LKP_STATUS_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LKP_STATUS_STATUSID_GENERATOR")
 	@Column(name="STATUS_ID")
-	private int statusId;
+	private long statusId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-	@Column(name="CREATEUSER")
-	private Integer createuser;
-
+	private BigDecimal createuser;
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
-
-	@Column(name="LASTUPDATEUSER")
-	private Integer lastupdateuser;
-
+	private BigDecimal lastupdateuser;
 
 	@Column(name="STATUS_CODE")
 	private String statusCode;
 
-
 	@Column(name="STATUS_DESCR")
 	private String statusDescr;
-
 
 	@Column(name="STATUS_NAME")
 	private String statusName;
 
-
-	@Column(name="UPDATEINDEX")
-	private Integer updateindex;
-
-
-	//bi-directional many-to-one association to TblMcPendingRequest
-	@OneToMany(mappedBy="lkpStatus")
-	private List<TblMcPendingRequest> tblMcPendingRequests;
-
-	//bi-directional many-to-one association to TblMcRequest
-	@OneToMany(mappedBy="lkpStatus")
-	private List<TblMcRequest> tblMcRequests;
-
-	//bi-directional many-to-one association to TblMcRequestAction
-	@OneToMany(mappedBy="lkpStatus")
-	private List<TblMcRequestAction> tblMcRequestActions;
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblMerchant
 	@OneToMany(mappedBy="lkpStatus")
+	@JsonIgnore
 	private List<TblMerchant> tblMerchants;
 
-//	//bi-directional many-to-one association to TblRole
-//	@OneToMany(mappedBy="lkpStatus")
-//	private List<TblRole> tblRoles;
+	//bi-directional many-to-one association to TblRoleRight
+	@OneToMany(mappedBy="lkpStatus")
+	@JsonIgnore
+	private List<TblRoleRight> tblRoleRights;
+
+	//bi-directional many-to-one association to TblUser
+	@OneToMany(mappedBy="lkpStatus")
+	@JsonIgnore
+	private List<TblUser> tblUsers;
 
 	public LkpStatus() {
 	}
 
-
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public long getStatusId() {
+		return this.statusId;
 	}
 
-	public int getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(int statusId) {
+	public void setStatusId(long statusId) {
 		this.statusId = statusId;
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public int getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(Integer createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -119,23 +100,23 @@ public class LkpStatus implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(Integer lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
 	public String getStatusCode() {
-		return statusCode;
+		return this.statusCode;
 	}
 
 	public void setStatusCode(String statusCode) {
@@ -143,7 +124,7 @@ public class LkpStatus implements Serializable {
 	}
 
 	public String getStatusDescr() {
-		return statusDescr;
+		return this.statusDescr;
 	}
 
 	public void setStatusDescr(String statusDescr) {
@@ -151,85 +132,19 @@ public class LkpStatus implements Serializable {
 	}
 
 	public String getStatusName() {
-		return statusName;
+		return this.statusName;
 	}
 
 	public void setStatusName(String statusName) {
 		this.statusName = statusName;
 	}
 
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(Integer updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
-	}
-
-	public List<TblMcPendingRequest> getTblMcPendingRequests() {
-		return this.tblMcPendingRequests;
-	}
-
-	public void setTblMcPendingRequests(List<TblMcPendingRequest> tblMcPendingRequests) {
-		this.tblMcPendingRequests = tblMcPendingRequests;
-	}
-
-	public TblMcPendingRequest addTblMcPendingRequest(TblMcPendingRequest tblMcPendingRequest) {
-		getTblMcPendingRequests().add(tblMcPendingRequest);
-		tblMcPendingRequest.setLkpStatus(this);
-
-		return tblMcPendingRequest;
-	}
-
-	public TblMcPendingRequest removeTblMcPendingRequest(TblMcPendingRequest tblMcPendingRequest) {
-		getTblMcPendingRequests().remove(tblMcPendingRequest);
-		tblMcPendingRequest.setLkpStatus(null);
-
-		return tblMcPendingRequest;
-	}
-
-	public List<TblMcRequest> getTblMcRequests() {
-		return this.tblMcRequests;
-	}
-
-	public void setTblMcRequests(List<TblMcRequest> tblMcRequests) {
-		this.tblMcRequests = tblMcRequests;
-	}
-
-	public TblMcRequest addTblMcRequest(TblMcRequest tblMcRequest) {
-		getTblMcRequests().add(tblMcRequest);
-		tblMcRequest.setLkpStatus(this);
-
-		return tblMcRequest;
-	}
-
-	public TblMcRequest removeTblMcRequest(TblMcRequest tblMcRequest) {
-		getTblMcRequests().remove(tblMcRequest);
-		tblMcRequest.setLkpStatus(null);
-
-		return tblMcRequest;
-	}
-
-	public List<TblMcRequestAction> getTblMcRequestActions() {
-		return this.tblMcRequestActions;
-	}
-
-	public void setTblMcRequestActions(List<TblMcRequestAction> tblMcRequestActions) {
-		this.tblMcRequestActions = tblMcRequestActions;
-	}
-
-	public TblMcRequestAction addTblMcRequestAction(TblMcRequestAction tblMcRequestAction) {
-		getTblMcRequestActions().add(tblMcRequestAction);
-		tblMcRequestAction.setLkpStatus(this);
-
-		return tblMcRequestAction;
-	}
-
-	public TblMcRequestAction removeTblMcRequestAction(TblMcRequestAction tblMcRequestAction) {
-		getTblMcRequestActions().remove(tblMcRequestAction);
-		tblMcRequestAction.setLkpStatus(null);
-
-		return tblMcRequestAction;
 	}
 
 	public List<TblMerchant> getTblMerchants() {
@@ -254,26 +169,48 @@ public class LkpStatus implements Serializable {
 		return tblMerchant;
 	}
 
-//	public List<TblRole> getTblRoles() {
-//		return this.tblRoles;
-//	}
-//
-//	public void setTblRoles(List<TblRole> tblRoles) {
-//		this.tblRoles = tblRoles;
-//	}
+	public List<TblRoleRight> getTblRoleRights() {
+		return this.tblRoleRights;
+	}
 
-//	public TblRole addTblRole(TblRole tblRole) {
-//		getTblRoles().add(tblRole);
-//		tblRole.setLkpStatus(this);
-//
-//		return tblRole;
-//	}
-//
-//	public TblRole removeTblRole(TblRole tblRole) {
-//		getTblRoles().remove(tblRole);
-//		tblRole.setLkpStatus(null);
-//
-//		return tblRole;
-//	}
+	public void setTblRoleRights(List<TblRoleRight> tblRoleRights) {
+		this.tblRoleRights = tblRoleRights;
+	}
+
+	public TblRoleRight addTblRoleRight(TblRoleRight tblRoleRight) {
+		getTblRoleRights().add(tblRoleRight);
+		tblRoleRight.setLkpStatus(this);
+
+		return tblRoleRight;
+	}
+
+	public TblRoleRight removeTblRoleRight(TblRoleRight tblRoleRight) {
+		getTblRoleRights().remove(tblRoleRight);
+		tblRoleRight.setLkpStatus(null);
+
+		return tblRoleRight;
+	}
+
+	public List<TblUser> getTblUsers() {
+		return this.tblUsers;
+	}
+
+	public void setTblUsers(List<TblUser> tblUsers) {
+		this.tblUsers = tblUsers;
+	}
+
+	public TblUser addTblUser(TblUser tblUser) {
+		getTblUsers().add(tblUser);
+		tblUser.setLkpStatus(this);
+
+		return tblUser;
+	}
+
+	public TblUser removeTblUser(TblUser tblUser) {
+		getTblUsers().remove(tblUser);
+		tblUser.setLkpStatus(null);
+
+		return tblUser;
+	}
 
 }

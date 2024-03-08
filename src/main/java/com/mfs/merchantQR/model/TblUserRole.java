@@ -1,64 +1,43 @@
 package com.mfs.merchantQR.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
 /**
- * The persistent class for the tbl_user_role database table.
+ * The persistent class for the TBL_USER_ROLE database table.
  * 
  */
 @Entity
-@Table(name="tbl_user_role")
+@Table(name="TBL_USER_ROLE")
 @NamedQuery(name="TblUserRole.findAll", query="SELECT t FROM TblUserRole t")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TblUserRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="TBL_USER_ROLE_USERROLEID_GENERATOR", sequenceName="TBL_USER_ROLE_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TBL_USER_ROLE_USERROLEID_GENERATOR")
 	@Column(name="USER_ROLE_ID")
-	private int userRoleId;
+	private long userRoleId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date createdate;
 
-
-	@Column(name="CREATEUSER")
-	private Integer createuser;
-
-
+	private BigDecimal createuser;
 
 	@Column(name="IS_ACTIVE")
 	private String isActive;
 
-
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="LASTUPDATEDATE")
+	@Temporal(TemporalType.DATE)
 	private Date lastupdatedate;
 
+	private BigDecimal lastupdateuser;
 
-
-	@Column(name="LASTUPDATEUSER")
-	private Integer lastupdateuser;
-
-
-
-//	@Column(name="STATUS_ID")
-//	private Integer statusId;
-
-	@Column(name="UPDATEINDEX")
-	private Integer updateindex;
-
-
+	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblRole
-
 	@ManyToOne
 	@JoinColumn(name="ROLE_ID")
 	private TblRole tblRole;
@@ -66,42 +45,37 @@ public class TblUserRole implements Serializable {
 	//bi-directional many-to-one association to TblUser
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
-	@JsonIgnore
 	private TblUser tblUser;
 
 	public TblUserRole() {
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public long getUserRoleId() {
+		return this.userRoleId;
 	}
 
-	public int getUserRoleId() {
-		return userRoleId;
-	}
-
-	public void setUserRoleId(int userRoleId) {
+	public void setUserRoleId(long userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 
 	public Date getCreatedate() {
-		return createdate;
+		return this.createdate;
 	}
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 
-	public Integer getCreateuser() {
-		return createuser;
+	public BigDecimal getCreateuser() {
+		return this.createuser;
 	}
 
-	public void setCreateuser(Integer createuser) {
+	public void setCreateuser(BigDecimal createuser) {
 		this.createuser = createuser;
 	}
 
 	public String getIsActive() {
-		return isActive;
+		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
@@ -109,34 +83,26 @@ public class TblUserRole implements Serializable {
 	}
 
 	public Date getLastupdatedate() {
-		return lastupdatedate;
+		return this.lastupdatedate;
 	}
 
 	public void setLastupdatedate(Date lastupdatedate) {
 		this.lastupdatedate = lastupdatedate;
 	}
 
-	public int getLastupdateuser() {
-		return lastupdateuser;
+	public BigDecimal getLastupdateuser() {
+		return this.lastupdateuser;
 	}
 
-	public void setLastupdateuser(Integer lastupdateuser) {
+	public void setLastupdateuser(BigDecimal lastupdateuser) {
 		this.lastupdateuser = lastupdateuser;
 	}
 
-//	public int getStatusId() {
-//		return statusId;
-//	}
-//
-//	public void setStatusId(Integer statusId) {
-//		this.statusId = statusId;
-//	}
-
-	public int getUpdateindex() {
-		return updateindex;
+	public BigDecimal getUpdateindex() {
+		return this.updateindex;
 	}
 
-	public void setUpdateindex(Integer updateindex) {
+	public void setUpdateindex(BigDecimal updateindex) {
 		this.updateindex = updateindex;
 	}
 
