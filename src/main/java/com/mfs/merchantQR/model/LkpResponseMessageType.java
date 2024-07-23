@@ -48,7 +48,7 @@ public class LkpResponseMessageType implements Serializable {
 	private BigDecimal updateindex;
 
 	//bi-directional many-to-one association to TblResponseMessage
-	@OneToMany(mappedBy="lkpResponseMessageType")
+	@OneToMany(mappedBy="lkpResponseMessageType")...
 	private List<TblResponseMessage> tblResponseMessages;
 
 	public LkpResponseMessageType() {

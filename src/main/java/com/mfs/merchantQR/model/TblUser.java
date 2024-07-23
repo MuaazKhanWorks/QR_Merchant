@@ -17,7 +17,7 @@ import java.util.Map;
 @Entity
 @Table(name="TBL_USER")
 @NamedQuery(name="TblUser.findAll", query="SELECT t FROM TblUser t")
-public class TblUser implements Serializable {
+public class TblUser  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

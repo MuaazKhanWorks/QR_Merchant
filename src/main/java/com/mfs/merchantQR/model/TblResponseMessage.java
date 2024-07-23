@@ -42,7 +42,7 @@ public class TblResponseMessage implements Serializable {
 
 	//bi-directional many-to-one association to LkpResponseMessageType
 	@ManyToOne
-	@JoinColumn(name="RESPONSE_MESSAGE_TYPE_ID")
+	@JoinColumn(name="RESPONSE_MESSAGE_TYPE_ID").....
 	private LkpResponseMessageType lkpResponseMessageType;
 
 	public TblResponseMessage() {

@@ -22,5 +22,4 @@ public interface TblUserRepo extends JpaRepository<TblUser, Long> {
     List<TblUser> findByIsActive(String setYes);
 
     TblUser findByNameAndPassword(String name, String password);
-
 }
