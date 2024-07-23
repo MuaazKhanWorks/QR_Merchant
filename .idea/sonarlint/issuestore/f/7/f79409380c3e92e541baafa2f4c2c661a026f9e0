@@ -1,0 +1,18 @@
+
+c	java:S116."NRename this field "LOG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é÷“¦
+Y
+java:S18543">Remove this useless assignment to local variable "methodName".(ì¹¤Ùøÿÿÿÿ
+J
+java:S14813"/Remove this unused "methodName" local variable.(ì¹¤Ùøÿÿÿÿ
+V	java:S1259"<This block of commented-out lines of code should be removed.(ò²Ûıÿÿÿÿ
+V	java:S125R"<This block of commented-out lines of code should be removed.(ªÕÕŸùÿÿÿÿ
+V	java:S125c"<This block of commented-out lines of code should be removed.(º’ƒøÿÿÿÿ
+j
+java:S1128"ORemove this unused import 'com.fasterxml.jackson.core.JsonProcessingException'.(ßÔïÇûÿÿÿÿ
+e
+java:S1128"ORemove this unused import 'org.springframework.beans.factory.annotation.Value'.(ìø›
+N
+java:S1128"3Remove this unused import 'javax.validation.Valid'.(æ¤ñ÷úÿÿÿÿ
+T
+java:S1155<">Use isEmpty() to check whether the collection is empty or not.(šåÀ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ÏÀ²øÿÿÿÿ

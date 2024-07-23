@@ -1,0 +1,50 @@
+
+P	java:S125?"<This block of commented-out lines of code should be removed.(ÅÂ–
+Q	java:S125Z"<This block of commented-out lines of code should be removed.(ÕÊ‹Ñ
+W
+java:S1854x"<Remove this useless assignment to local variable "response".(…Ù•¸ÿÿÿÿÿ
+<
+java:S1905|"&Remove this unnecessary cast to "int".(êÓ™£
+Q
+java:S1161Œ":Add the "@Override" annotation above this method signature(Ñ×¶÷
+R	java:S125»"<This block of commented-out lines of code should be removed.(ÕÊ‹Ñ
+W	java:S125Ñ"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+B
+java:S1168â"+Return an empty collection instead of null.(¥¹ï
+R	java:S125á"<This block of commented-out lines of code should be removed.(Œ™×
+W	java:S125ë"<This block of commented-out lines of code should be removed.(÷Ò­Èøÿÿÿÿ
+U
+java:S1854Œ"?Remove this useless assignment to local variable "tblMerchant".(¤è·
+V
+java:S1854¬"?Remove this useless assignment to local variable "requestBody".(©¸
+G
+java:S1481¬"0Remove this unused "requestBody" local variable.(©¸
+T
+java:S1128"9Remove this unused import 'com.mfs.merchantQR.dto.Error'.(éˆ–÷øÿÿÿÿ
+[
+java:S1128"ERemove this unused import 'com.mfs.merchantQR.utils.FieldsValidator'.(Ú·»§
+v
+java:S1128"[Remove this unused import 'org.springframework.instrument.classloading.WeavingTransformer'.(˜¶¦ìúÿÿÿÿ
+M
+java:S1128"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ
+D
+java:S1121Œ".Extract the assignment out of this expression.(¤è·
+
+java:S1488Û"cImmediately return this expression instead of assigning it to the temporary variable "getAllUsers".(¯­ˆÙıÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡½æ¯
+\
+java:S2259±"EA "NullPointerException" could be thrown; "tblUser" is nullable here.(ÿÊ¯²
+a
+java:S2259b"FA "NullPointerException" could be thrown; "tblRole1" is nullable here.(Ğğ«Šÿÿÿÿÿ
+e
+java:S2259Æ"IA "NullPointerException" could be thrown; "tblUserRole" is nullable here.(ŸÅÑÉûÿÿÿÿ
+b
+java:S2259Å"FA "NullPointerException" could be thrown; "tblRole1" is nullable here.(Ğğ«Šÿÿÿÿÿ
+`
+java:S2259†"IA "NullPointerException" could be thrown; "tblMerchant" is nullable here.(å„Çş
+S
+java:S2589À"7Remove this expression which always evaluates to "true"(¶ ÿ¨şÿÿÿÿ
+^
+java:S2583^"CChange this condition so that it does not always evaluate to "true"(ŠÃµ…ùÿÿÿÿ
+_
+java:S2583 "CChange this condition so that it does not always evaluate to "true"(ŠÃµ…ùÿÿÿÿ

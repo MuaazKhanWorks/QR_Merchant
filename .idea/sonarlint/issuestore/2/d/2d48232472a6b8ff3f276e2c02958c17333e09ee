@@ -1,0 +1,130 @@
+
+c	java:S116)"NRename this field "LOG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é÷“¦
+B
+java:S3416)",Update this logger to use "QrPostApi.class".(é÷“¦
+X
+java:S1854»"<Remove this useless assignment to local variable "saveUser".(Ÿ¤¿çúÿÿÿÿ
+Z
+java:S1854µ">Remove this useless assignment to local variable "methodName".(ì¹¤Ùøÿÿÿÿ
+V	java:S125:"<This block of commented-out lines of code should be removed.(…ı›Éøÿÿÿÿ
+K
+java:S1481µ"/Remove this unused "methodName" local variable.(ì¹¤Ùøÿÿÿÿ
+I
+java:S1481»"-Remove this unused "saveUser" local variable.(Ÿ¤¿çúÿÿÿÿ
+R	java:S125¾"<This block of commented-out lines of code should be removed.(ö¾½
+R	java:S125À"<This block of commented-out lines of code should be removed.(¦ÅÀ
+R	java:S125Ã"<This block of commented-out lines of code should be removed.(…’ˆÀ
+Q	java:S125Ï"<This block of commented-out lines of code should be removed.(êíé{
+R	java:S125Ú"<This block of commented-out lines of code should be removed.(¡Õ±š
+i
+java:S3776é"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ŸÒ”ˆ
+`
+java:S1854ó"DRemove this useless assignment to local variable "loggedUserDetail".(Øñ€øÿÿÿÿ
+Z
+java:S1854ê">Remove this useless assignment to local variable "methodName".(ì¹¤Ùøÿÿÿÿ
+ˆ
+java:S1130é"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ŸÒ”ˆ
+K
+java:S1481ê"/Remove this unused "methodName" local variable.(ì¹¤Ùøÿÿÿÿ
+R	java:S125ò"<This block of commented-out lines of code should be removed.(àŸ§˜
+R	java:S125ù"<This block of commented-out lines of code should be removed.(÷÷Œü
+W	java:S125…"<This block of commented-out lines of code should be removed.(¢Œçúÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(¢Œçúÿÿÿÿ
+W	java:S125œ"<This block of commented-out lines of code should be removed.(É¿Õˆùÿÿÿÿ
+W	java:S125¡"<This block of commented-out lines of code should be removed.(°è¯Ãúÿÿÿÿ
+i
+java:S3776§"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ë£âà
+`
+java:S1854¯"DRemove this useless assignment to local variable "loggedUserDetail".(Øñ€øÿÿÿÿ
+Z
+java:S1854¨">Remove this useless assignment to local variable "methodName".(ì¹¤Ùøÿÿÿÿ
+ˆ
+java:S1130§"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(Ë£âà
+K
+java:S1481¨"/Remove this unused "methodName" local variable.(ì¹¤Ùøÿÿÿÿ
+R	java:S125®"<This block of commented-out lines of code should be removed.(•©İÓ
+Q
+java:S1481¯"5Remove this unused "loggedUserDetail" local variable.(Øñ€øÿÿÿÿ
+R	java:S125°"<This block of commented-out lines of code should be removed.(¦ÅÀ
+R	java:S125µ"<This block of commented-out lines of code should be removed.(ß¶¾¬
+W	java:S125¼"<This block of commented-out lines of code should be removed.(«·Çşÿÿÿÿ
+W	java:S125Â"<This block of commented-out lines of code should be removed.(«·Çşÿÿÿÿ
+R	java:S125Ê"<This block of commented-out lines of code should be removed.(¡Õ±š
+n
+java:S3776×"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ü¡­ûÿÿÿÿ
+Z
+java:S1854Ø">Remove this useless assignment to local variable "methodName".(ì¹¤Ùøÿÿÿÿ
+
+java:S1130×"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ü¡­ûÿÿÿÿ
+K
+java:S1481Ø"/Remove this unused "methodName" local variable.(ì¹¤Ùøÿÿÿÿ
+Q	java:S125Ş"<This block of commented-out lines of code should be removed.(¦ôÜ
+R	java:S125á"<This block of commented-out lines of code should be removed.(·ÔµÒ
+W	java:S125ë"<This block of commented-out lines of code should be removed.(²øÕßûÿÿÿÿ
+W	java:S125ñ"<This block of commented-out lines of code should be removed.(²øÕßûÿÿÿÿ
+Q	java:S125ş"<This block of commented-out lines of code should be removed.(êíé{
+W	java:S125"<This block of commented-out lines of code should be removed.(ØÃ´ëÿÿÿÿÿ
+_
+java:S4488†"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(á·ÖÈ
+d	java:S100š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎĞ€Ì
+i
+java:S3776š"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÎĞ€Ì
+`
+java:S1854¥"DRemove this useless assignment to local variable "loggedUserDetail".(Øñ€øÿÿÿÿ
+X
+java:S1854¡"<Remove this useless assignment to local variable "saveUser".(Ÿ¤¿çúÿÿÿÿ
+\
+java:S1854œ"@Remove this useless assignment to local variable "objectMapper".(¡ôó‰ùÿÿÿÿ
+Z
+java:S1854›">Remove this useless assignment to local variable "methodName".(ì¹¤Ùøÿÿÿÿ
+£
+java:S1130š"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(ÎĞ€Ì
+ˆ
+java:S1130š"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ÎĞ€Ì
+K
+java:S1481›"/Remove this unused "methodName" local variable.(ì¹¤Ùøÿÿÿÿ
+M
+java:S1481œ"1Remove this unused "objectMapper" local variable.(¡ôó‰ùÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(Ú¨Ÿú
+I
+java:S1481¡"-Remove this unused "saveUser" local variable.(Ÿ¤¿çúÿÿÿÿ
+R	java:S125¤"<This block of commented-out lines of code should be removed.(ö¾½
+Q
+java:S1481¥"5Remove this unused "loggedUserDetail" local variable.(Øñ€øÿÿÿÿ
+R	java:S125¦"<This block of commented-out lines of code should be removed.(¦ÅÀ
+R	java:S125©"<This block of commented-out lines of code should be removed.(…’ˆÀ
+W	java:S125¶"<This block of commented-out lines of code should be removed.(¢Œçúÿÿÿÿ
+W	java:S125¾"<This block of commented-out lines of code should be removed.(¢Œçúÿÿÿÿ
+R	java:S125Ì"<This block of commented-out lines of code should be removed.(ÓÅ¼È
+N
+java:S1128"3Remove this unused import 'javax.validation.Valid'.(æ¤ñ÷úÿÿÿÿ
+G
+java:S1128"1Remove this unused import 'java.math.BigDecimal'.(êêŠ
+J
+java:S1128!"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ
+£
+java:S1192¼"‹Define a constant instead of duplicating this literal "
+
+
+INSIDE 
+ CLASS == MicrobankZmilesLovController 
+ METHOD == lovTier(); " 15 times.(ê·¥¨
+Z
+java:S1155Æ">Use isEmpty() to check whether the collection is empty or not.(ˆ°æûÿÿÿÿ
+Z
+java:S1155ü">Use isEmpty() to check whether the collection is empty or not.(ˆ°æûÿÿÿÿ
+U
+java:S1155ş">Use isEmpty() to check whether the collection is empty or not.(Ğññ
+Z
+java:S1155´">Use isEmpty() to check whether the collection is empty or not.(ˆ°æûÿÿÿÿ
+Z
+java:S1155·">Use isEmpty() to check whether the collection is empty or not.(ñ‘äüÿÿÿÿ
+Z
+java:S1155ä">Use isEmpty() to check whether the collection is empty or not.(ˆ°æûÿÿÿÿ
+Z
+java:S1155¬">Use isEmpty() to check whether the collection is empty or not.(ˆ°æûÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ÏÀ²øÿÿÿÿ
+l
+java:S2259Î"PA "NullPointerException" could be thrown; "tblResponseMessage" is nullable here.(ğ»¡íşÿÿÿÿ
+_
+java:S2583ö"CChange this condition so that it does not always evaluate to "true"(Ñå®ûÿÿÿÿ

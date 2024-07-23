@@ -1,0 +1,55 @@
+
+c	java:S116-"NRename this field "LOG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é÷“¦
+A
+java:S3416-"+Update this logger to use "QrGetApi.class".(é÷“¦
+T
+java:S18541">Remove this useless assignment to local variable "methodName".(ò€¯™
+§
+java:S11300"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(í¤î¿úÿÿÿÿ
+c
+java:S4488/"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¶µ¼Äøÿÿÿÿ
+V
+java:S21331"@Remove this object instantiation and use "Object.class" instead.(ò€¯™
+E
+java:S14811"/Remove this unused "methodName" local variable.(ò€¯™
+[
+java:S18584"E"getProperty" returns a string, there's no need to call "toString()".(…õ¡„
+Q	java:S1256"<This block of commented-out lines of code should be removed.(ŽéÏç
+V	java:S125@"<This block of commented-out lines of code should be removed.(¼Á‘ðøÿÿÿÿ
+V	java:S125G"<This block of commented-out lines of code should be removed.(¼Á‘ðøÿÿÿÿ
+V	java:S125M"<This block of commented-out lines of code should be removed.(Î¼¸·ýÿÿÿÿ
+^
+java:S1128
+"HRemove this unused import 'com.fasterxml.jackson.databind.ObjectMapper'.(´‘¨™
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(ÛÇ
+I
+java:S1128"3Remove this unused import 'com.mfs.merchantQR.dto'.(È˜ˆþ
+T
+java:S1128"9Remove this unused import 'com.mfs.merchantQR.dto.Error'.(éˆ–÷øÿÿÿÿ
+S
+java:S1128"8Remove this unused import 'org.modelmapper.ModelMapper'.(ó¿Ôúÿÿÿÿ
+?
+java:S1128")Remove this unused import 'java.io.File'.(†Ð¥Å
+K
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ
+F
+java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü
+C
+java:S1128"-Remove this unused import 'java.util.Base64'.(ëŠ»Õ
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+¡
+java:S11925"ŠDefine a constant instead of duplicating this literal "
+
+
+INSIDE 
+ CLASS == MicrobankZmilesLovController 
+ METHOD == lovTier(); " 3 times.(ê·¥¨
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ÏÀ²øÿÿÿÿ
+`
+java:S22594"JA "NullPointerException" could be thrown; "getProperty()" can return null.(…õ¡„
+^
+java:S2583="CChange this condition so that it does not always evaluate to "true"(å¾Àþÿÿÿÿ
+^
+java:S2583E"CChange this condition so that it does not always evaluate to "true"(å¾Àþÿÿÿÿ
